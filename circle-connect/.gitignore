@@ -1,0 +1,13 @@
+.DS_Store
+*/.DS_Store
+*.env
+.env
+.token_cache.json
+*.cache
+config/tenants.json
+!config/tenants.template.json
+reports/*
+!reports/.gitkeep
+circle-connect/reports/*
+.netlify
+web/.netlify

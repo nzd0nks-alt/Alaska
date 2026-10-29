@@ -1,0 +1,25 @@
+{
+  "masterApp": {
+    "description": "Circle IT Multi-Tenant MSP Application registered in Circle IT tenant (circleit.co.nz)",
+    "clientId": "YOUR_CIRCLE_IT_MULTI_TENANT_CLIENT_ID",
+    "clientSecret": "YOUR_CIRCLE_IT_CLIENT_SECRET"
+  },
+  "tenants": [
+    {
+      "id": "alaska",
+      "displayName": "Alaska Construction & Interiors",
+      "primaryDomain": "alaska.co.nz",
+      "tenantId": "621d0682-74a0-43b0-9167-92fafda77e77",
+      "useMasterApp": false,
+      "clientId": "597b8388-dcf7-4903-88d8-4f5044936bae",
+      "clientSecret": "ENTER_CLIENT_SECRET_IF_DEDICATED"
+    },
+    {
+      "id": "example-client-2",
+      "displayName": "Example Client Co",
+      "primaryDomain": "client2.co.nz",
+      "tenantId": "00000000-0000-0000-0000-000000000000",
+      "useMasterApp": true
+    }
+  ]
+}

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="circleit" data-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alaska Construction & Interiors — M365 Cloud Modernization & Optimization Proposal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; transition: background-color 0.25s ease, color 0.25s ease; }
+
+    /* ========================================================
+       THEME DEFINITIONS (CSS CUSTOM PROPERTIES)
+       ======================================================== */
+    /* 1. CIRCLE IT THEME (Default) */
+    [data-theme="circleit"][data-mode="dark"] {
+      --bg-page: #001a22;
+      --bg-surface: #003343;
+      --bg-card: #042530;
+      --bg-card-hover: #073847;
+      --bg-header: #00222d;
+      --border-color: #0b4959;
+      --border-subtle: #083c4a;
+      --text-main: #f0fbfc;
+      --text-muted: #7ad5df;
+      --brand-primary: #45b9ca;
+      --brand-accent: #7ad5df;
+      --brand-btn: #45b9ca;
+      --brand-btn-text: #00222d;
+      --kpi-bg: rgba(69, 185, 202, 0.12);
+      --table-header: #002936;
+      --table-row-hover: rgba(69, 185, 202, 0.08);
+      --badge-healthy: rgba(16, 185, 129, 0.2);
+      --badge-healthy-text: #34d399;
+    }
+    [data-theme="circleit"][data-mode="light"] {
+      --bg-page: #f0f9fb;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #eaf8fa;
+      --bg-header: #ffffff;
+      --border-color: #d0edf2;
+      --border-subtle: #e1f4f7;
+      --text-main: #002733;
+      --text-muted: #075566;
+      --brand-primary: #07586a;
+      --brand-accent: #45b9ca;
+      --brand-btn: #07586a;
+      --brand-btn-text: #ffffff;
+      --kpi-bg: #eaf8fa;
+      --table-header: #e6f6f9;
+      --table-row-hover: #f3fbfc;
+      --badge-healthy: #d1fae5;
+      --badge-healthy-text: #065f46;
+    }
+
+    /* 2. ALASKA THEME (Forest Green & Construction Orange) */
+    [data-theme="alaska"][data-mode="dark"] {
+      --bg-page: #0e1412;
+      --bg-surface: #15221e;
+      --bg-card: #1b2b26;
+      --bg-card-hover: #223730;
+      --bg-header: #111a17;
+      --border-color: #26423a;
+      --border-subtle: #1e332c;
+      --text-main: #f2f7f5;
+      --text-muted: #93b3a9;
+      --brand-primary: #e85d04;
+      --brand-accent: #f48c06;
+      --brand-btn: #e85d04;
+      --brand-btn-text: #ffffff;
+      --kpi-bg: rgba(232, 93, 4, 0.12);
+      --table-header: #182823;
+      --table-row-hover: rgba(232, 93, 4, 0.08);
+      --badge-healthy: rgba(31, 58, 52, 0.4);
+      --badge-healthy-text: #4ade80;
+    }
+    [data-theme="alaska"][data-mode="light"] {
+      --bg-page: #f8faf9;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f2f7f5;
+      --bg-header: #ffffff;
+      --border-color: #e2e8e5;
+      --border-subtle: #edf2f0;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --brand-primary: #1f3a34;
+      --brand-accent: #e85d04;
+      --brand-btn: #1f3a34;
+      --brand-btn-text: #ffffff;
+      --kpi-bg: #f2f7f5;
+      --table-header: #f2f7f5;
+      --table-row-hover: #f9fbfb;
+      --badge-healthy: #dcfce7;
+      --badge-healthy-text: #166534;
+    }
+
+    /* 3. MODERN SLATE THEME */
+    [data-theme="slate"][data-mode="dark"] {
+      --bg-page: #0b0f17;
+      --bg-surface: #111827;
+      --bg-card: #1f2937;
+      --bg-card-hover: #374151;
+      --bg-header: #0f172a;
+      --border-color: #374151;
+      --border-subtle: #2d3748;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --brand-primary: #3b82f6;
+      --brand-accent: #60a5fa;
+      --brand-btn: #3b82f6;
+      --brand-btn-text: #ffffff;
+      --kpi-bg: rgba(59, 130, 246, 0.12);
+      --table-header: #182234;
+      --table-row-hover: rgba(59, 130, 246, 0.08);
+      --badge-healthy: rgba(16, 185, 129, 0.2);
+      --badge-healthy-text: #34d399;
+    }
+    [data-theme="slate"][data-mode="light"] {
+      --bg-page: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --bg-header: #ffffff;
+      --border-color: #e2e8f0;
+      --border-subtle: #edf2f7;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --brand-primary: #2563eb;
+      --brand-accent: #3b82f6;
+      --brand-btn: #2563eb;
+      --brand-btn-text: #ffffff;
+      --kpi-bg: #f0fdf4;
+      --table-header: #f1f5f9;
+      --table-row-hover: #f8fafc;
+      --badge-healthy: #dcfce7;
+      --badge-healthy-text: #166534;
+    }
+
+    /* Apply variables */
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-main);
+    }
+    .bg-theme-header { background-color: var(--bg-header); }
+    .bg-theme-card { background-color: var(--bg-card); }
+    .border-theme { border-color: var(--border-color); }
+    .border-subtle { border-color: var(--border-subtle); }
+    .text-theme-main { color: var(--text-main); }
+    .text-theme-muted { color: var(--text-muted); }
+    .text-theme-brand { color: var(--brand-primary); }
+    .bg-theme-brand { background-color: var(--brand-btn); color: var(--brand-btn-text); }
+    .bg-theme-kpi { background-color: var(--kpi-bg); }
+    .bg-theme-th { background-color: var(--table-header); }
+    .hover-theme-row:hover { background-color: var(--table-row-hover); }
+
+    @media print {
+      body { background: white !important; color: black !important; }
+      .no-print { display: none !important; }
+      .page-break { page-break-before: always; }
+      .card { border: 1px solid #ccc !important; box-shadow: none !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- Top Navigation & Theme Customizer Bar -->
+  <header class="no-print border-b border-theme bg-theme-header sticky top-0 z-50 backdrop-blur">
+    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="h-9 w-9 rounded-lg flex items-center justify-center font-bold text-white shadow-md bg-theme-brand">
+          <i class="fa-solid fa-file-contract"></i>
+        </div>
+        <div>
+          <span class="text-xs text-theme-brand font-bold tracking-wider uppercase">Statement of Work</span>
+          <h1 class="text-sm font-bold text-theme-main">Alaska Modernization & Migration Program</h1>
+        </div>
+      </div>
+
+      <!-- Action & Customizer Controls -->
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <!-- Brand Theme Picker Dropdown -->
+        <div class="flex items-center space-x-1.5 bg-theme-card border border-theme rounded-lg px-2.5 py-1 text-xs">
+          <i class="fa-solid fa-palette text-theme-brand text-2xs"></i>
+          <span class="text-theme-muted text-2xs hidden sm:inline">Theme:</span>
+          <select id="themeSelector" onchange="changeTheme(this.value)" class="bg-transparent text-theme-main font-semibold text-xs outline-none cursor-pointer">
+            <option value="circleit" class="bg-slate-900 text-white">Circle IT (Teal/Cyan)</option>
+            <option value="alaska" class="bg-slate-900 text-white">Alaska (Forest/Orange)</option>
+            <option value="slate" class="bg-slate-900 text-white">Modern Slate</option>
+          </select>
+        </div>
+
+        <!-- Mode Toggle (Light/Dark) -->
+        <button id="modeToggleBtn" onclick="toggleMode()" class="px-2.5 py-1.5 rounded-lg border border-theme bg-theme-card hover:opacity-90 text-xs font-semibold text-theme-main transition flex items-center space-x-1.5" title="Toggle Light/Dark Mode">
+          <i id="modeIcon" class="fa-solid fa-sun text-amber-400"></i>
+          <span id="modeLabel" class="hidden sm:inline">Light</span>
+        </button>
+
+        <!-- Dashboard Link -->
+        <a href="index.html" class="px-3 py-1.5 rounded-lg border border-theme bg-theme-card hover:opacity-90 text-xs font-semibold text-theme-main transition flex items-center">
+          <i class="fa-solid fa-chart-pie mr-1.5"></i> <span class="hidden sm:inline">Audit </span>Dashboard
+        </a>
+
+        <!-- Export -->
+        <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-theme-brand hover:opacity-90 text-xs font-bold transition shadow-sm flex items-center">
+          <i class="fa-solid fa-print mr-1.5"></i> <span class="hidden sm:inline">Save </span>PDF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-10 space-y-10">
+    <!-- Proposal Cover / Header Block -->
+    <div class="bg-theme-card rounded-2xl border border-theme p-8 shadow-sm">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-6 border-b border-theme gap-4">
+        <div>
+          <div class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-theme-kpi text-theme-brand border border-theme mb-2">
+            Professional Services SOW
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-theme-main tracking-tight">Microsoft 365 Cloud Modernization & Optimization</h1>
+          <p class="text-sm text-theme-muted mt-1">Enterprise Storage Rationalization, Cold Archival & Data Governance</p>
+        </div>
+        <div class="text-left md:text-right text-xs text-theme-muted bg-theme-kpi p-4 rounded-xl border border-theme">
+          <div><strong class="text-theme-main">Client:</strong> Alaska Construction & Interiors</div>
+          <div><strong class="text-theme-main">Provider:</strong> Circle IT Limited</div>
+          <div><strong class="text-theme-main">Lead Architect:</strong> Michael Blackman</div>
+          <div><strong class="text-theme-main">Date:</strong> October 2026</div>
+        </div>
+      </div>
+
+      <!-- ROI Summary Box -->
+      <div class="mt-6 bg-theme-card border border-theme rounded-xl p-6 grid grid-cols-1 sm:grid-cols-3 gap-6 shadow-sm">
+        <div>
+          <div class="text-xs uppercase text-theme-muted font-bold tracking-wider">Flagship Priority</div>
+          <div class="text-2xl font-extrabold text-theme-brand mt-1">PRJ-01 <span class="text-xs font-normal text-theme-muted">SharePoint</span></div>
+          <div class="text-2xs text-theme-muted mt-1">Storage Rationalization & Cold Archival</div>
+        </div>
+        <div>
+          <div class="text-xs uppercase text-theme-muted font-bold tracking-wider">PRJ-01 Annual Savings</div>
+          <div class="text-2xl font-extrabold text-theme-main mt-1">~$13,139 <span class="text-xs font-normal text-theme-muted">NZD / yr</span></div>
+          <div class="text-2xs text-emerald-500 font-semibold mt-1">Eliminates Microsoft storage penalty</div>
+        </div>
+        <div>
+          <div class="text-xs uppercase text-theme-muted font-bold tracking-wider">Client Payback Window</div>
+          <div class="text-2xl font-extrabold text-emerald-500 mt-1">~13.5 <span class="text-xs font-normal text-theme-muted">Months</span></div>
+          <div class="text-2xs text-theme-muted mt-1">Self-funding high-impact business case</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commercial Project Matrix Table -->
+    <div class="bg-theme-card rounded-2xl border border-theme overflow-hidden shadow-sm">
+      <div class="px-8 py-5 border-b border-theme bg-theme-th flex justify-between items-center">
+        <div>
+          <h2 class="text-base font-bold text-theme-main">Project Scopes & Investment Schedule</h2>
+          <p class="text-xs text-theme-muted">Fixed-investment professional services engagements</p>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-full font-bold bg-theme-brand text-white">Fixed-Fee Guarantee</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-theme-th text-theme-muted uppercase font-semibold border-b border-theme">
+            <tr>
+              <th class="px-6 py-3.5">Code</th>
+              <th class="px-6 py-3.5">Project Scope</th>
+              <th class="px-6 py-3.5">Priority</th>
+              <th class="px-6 py-3.5 text-right">Fixed Investment (NZD)</th>
+              <th class="px-6 py-3.5 text-right">Annual Savings</th>
+              <th class="px-6 py-3.5">Payback / Primary Impact</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y border-subtle">
+            <!-- PRJ-01 Flagship -->
+            <tr class="bg-theme-kpi hover-theme-row transition">
+              <td class="px-6 py-5 font-bold text-theme-brand text-sm">PRJ-01</td>
+              <td class="px-6 py-5">
+                <div class="font-extrabold text-theme-main text-sm">SharePoint Estate Rationalization & Cold Storage Migration</div>
+                <div class="text-theme-muted text-2xs mt-1 leading-relaxed">
+                  Enterprise archival of 790+ GB dormant tenders & contracts to M365 Cold Archive, version sprawl cleanup across 2.11M files, and NZ Building Act 2004 compliance retention.
+                </div>
+              </td>
+              <td class="px-6 py-5">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-2xs font-extrabold bg-theme-brand text-white">
+                  FLAGSHIP PRIORITY
+                </span>
+              </td>
+              <td class="px-6 py-5 text-right font-extrabold text-theme-main text-base">$14,850</td>
+              <td class="px-6 py-5 text-right font-extrabold text-emerald-500 text-sm">~$13,139 / yr</td>
+              <td class="px-6 py-5">
+                <div class="font-bold text-theme-main">~13.5 Months</div>
+                <div class="text-2xs text-emerald-500 font-semibold">Self-funding ROI</div>
+              </td>
+            </tr>
+
+            <!-- PRJ-02 Operational -->
+            <tr class="hover-theme-row transition">
+              <td class="px-6 py-4 font-bold text-theme-main">PRJ-02</td>
+              <td class="px-6 py-4">
+                <div class="font-bold text-theme-main text-xs">Exchange Online Quota Remediation & Inactive License Recovery</div>
+                <div class="text-theme-muted text-2xs mt-0.5">Emergency quota expansion for key PMs at risk of bouncing, 1.5TB archives & 43 inactive mailbox conversion.</div>
+              </td>
+              <td class="px-6 py-4">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-2xs font-bold bg-slate-500/20 text-theme-muted">
+                  OPERATIONAL
+                </span>
+              </td>
+              <td class="px-6 py-4 text-right font-bold text-theme-main">$7,850</td>
+              <td class="px-6 py-4 text-right font-bold text-theme-muted">~$2,400 / yr</td>
+              <td class="px-6 py-4 text-theme-muted">Outage risk defense</td>
+            </tr>
+
+            <!-- PRJ-03 Right-sizing -->
+            <tr class="hover-theme-row transition">
+              <td class="px-6 py-4 font-bold text-theme-main">PRJ-03</td>
+              <td class="px-6 py-4">
+                <div class="font-bold text-theme-main text-xs">Project & Planner Modernization & Software License Rationalization</div>
+                <div class="text-theme-muted text-2xs mt-0.5">Transition non-schedulers off Project Plan 3 ($80/mo) into standardized Teams Planner boards and workflows.</div>
+              </td>
+              <td class="px-6 py-4">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-2xs font-bold bg-slate-500/20 text-theme-muted">
+                  RIGHT-SIZING
+                </span>
+              </td>
+              <td class="px-6 py-4 text-right font-bold text-theme-main">$9,800</td>
+              <td class="px-6 py-4 text-right font-bold text-emerald-500">~$5,814 / yr</td>
+              <td class="px-6 py-4 text-theme-muted">~20 Months payback</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- FLAGSHIP PROJECT 1 DEEP DIVE -->
+    <div class="bg-theme-card rounded-2xl border-2 border-theme p-8 shadow-md space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between items-start gap-3 pb-4 border-b border-theme">
+        <div>
+          <span class="text-xs font-extrabold uppercase text-theme-brand tracking-wider">Primary Recommendation (Flagship Engagement)</span>
+          <h3 class="text-2xl font-extrabold text-theme-main mt-1">PRJ-01: SharePoint Estate Rationalization & Cold Storage Migration</h3>
+          <p class="text-xs text-theme-muted mt-1">Enterprise storage remediation across 4.48 TB, 29 site collections & 2,113,819 files</p>
+        </div>
+        <div class="text-left sm:text-right bg-theme-kpi px-4 py-3 rounded-xl border border-theme">
+          <div class="text-xs font-semibold text-theme-muted">Fixed Professional Fee</div>
+          <div class="text-2xl font-extrabold text-theme-brand">$14,850 <span class="text-xs font-semibold text-theme-muted">NZD</span></div>
+          <div class="text-2xs font-bold text-emerald-500">Recovers ~$13,139 / yr recurring</div>
+        </div>
+      </div>
+
+      <div class="prose max-w-none text-xs text-theme-muted leading-relaxed space-y-2">
+        <p>
+          Alaska's live tenant audit revealed that <strong>over 790 GB</strong> of storage sits in completely stagnant historical repositories (<em>Archive Contracts</em> at 530 GB and <em>Archive Tenders</em> at 260 GB) where fewer than 20 files have been opened in the last 30 days. Microsoft bills this dormant capacity at premium active storage tiers, generating substantial ongoing overage penalties.
+        </p>
+        <p>
+          This flagship engagement transitions this vast data footprint into compliant, low-cost cold storage tiers, remediates excessive multi-version history bloat across 2.11 million files, and ensures 100% compliance with New Zealand construction retention statutes.
+        </p>
+      </div>
+
+      <!-- 6 Comprehensive Phases Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 text-xs">
+        <!-- Phase 1 -->
+        <div class="p-4 bg-theme-header rounded-xl border border-theme space-y-1.5">
+          <div class="flex items-center space-x-2 text-theme-brand font-bold">
+            <span class="h-5 w-5 rounded bg-theme-kpi flex items-center justify-center text-xs">1</span>
+            <h4>Estate Inventory & NZ Building Act Compliance Audit</h4>
+          </div>
+          <p class="text-2xs text-theme-muted leading-relaxed">
+            Detailed cataloging of all 29 site collections and 2.11M files. Map historical project collateral against the <strong>New Zealand Building Act 2004</strong> (10-year defect liability documentation, Producer Statements PS1–PS4, Code Compliance Certificates) and IRD 7-year financial retention rules.
+          </p>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="p-4 bg-theme-header rounded-xl border border-theme space-y-1.5">
+          <div class="flex items-center space-x-2 text-theme-brand font-bold">
+            <span class="h-5 w-5 rounded bg-theme-kpi flex items-center justify-center text-xs">2</span>
+            <h4>Cold Target Architecture & Search Index Preservation</h4>
+          </div>
+          <p class="text-2xs text-theme-muted leading-relaxed">
+            Architect Microsoft 365 Cold Archive and Azure Storage targets. Configure Microsoft Purview compliance indexing so that archived files remain instantly discoverable via search without requiring costly re-hydration to active storage. Preserve all metadata, timestamps, and permissions.
+          </p>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="p-4 bg-theme-header rounded-xl border border-theme space-y-1.5">
+          <div class="flex items-center space-x-2 text-theme-brand font-bold">
+            <span class="h-5 w-5 rounded bg-theme-kpi flex items-center justify-center text-xs">3</span>
+            <h4>Automated Version Sprawl Cleanup & Quota Reclamation</h4>
+          </div>
+          <p class="text-2xs text-theme-muted leading-relaxed">
+            Remediate multi-gigabyte version history bloat across high-churn CAD and specification libraries, safely reducing excessive 500-version histories to a standardized 50-version threshold. Purge orphaned upload fragments to deliver immediate active space relief.
+          </p>
+        </div>
+
+        <!-- Phase 4 -->
+        <div class="p-4 bg-theme-header rounded-xl border border-theme space-y-1.5">
+          <div class="flex items-center space-x-2 text-theme-brand font-bold">
+            <span class="h-5 w-5 rounded bg-theme-kpi flex items-center justify-center text-xs">4</span>
+            <h4>Pilot Migration & Cryptographic Checksum Validation</h4>
+          </div>
+          <p class="text-2xs text-theme-muted leading-relaxed">
+            Execute a 50 GB pilot migration across key construction formats (<code>.dwg</code>, <code>.rvt</code>, <code>.pdf</code>, <code>.msg</code>). Perform SHA-256 cryptographic hash checks before and after transfer to guarantee 100% bit-level data integrity with zero corruption. Validate on-demand file retrieval latency.
+          </p>
+        </div>
+
+        <!-- Phase 5 -->
+        <div class="p-4 bg-theme-header rounded-xl border border-theme space-y-1.5">
+          <div class="flex items-center space-x-2 text-theme-brand font-bold">
+            <span class="h-5 w-5 rounded bg-theme-kpi flex items-center justify-center text-xs">5</span>
+            <h4>Production Archival Migration & Staged Cutover</h4>
+          </div>
+          <p class="text-2xs text-theme-muted leading-relaxed">
+            Execute throttled, non-disruptive migration of <em>Archive Contracts</em> (530 GB / 537k files) and <em>Archive Tenders</em> (260 GB / 239k files). Transfer scheduled during off-peak windows to ensure zero disruption to live tenders. Configure clean read-only navigation shortcuts for seamless user access.
+          </p>
+        </div>
+
+        <!-- Phase 6 -->
+        <div class="p-4 bg-theme-header rounded-xl border border-theme space-y-1.5">
+          <div class="flex items-center space-x-2 text-theme-brand font-bold">
+            <span class="h-5 w-5 rounded bg-theme-kpi flex items-center justify-center text-xs">6</span>
+            <h4>Continuous Lifecycle Automation & Project Manager SOP</h4>
+          </div>
+          <p class="text-2xs text-theme-muted leading-relaxed">
+            Deploy automated Power Automate / Graph API workflows that automatically flag closed projects for cold archival after 12 months, preventing future bloat. Deliver the official Alaska Document Lifecycle Standard Operating Procedure (SOP) and post-migration audit report.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondary Scopes Summary Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-theme-card rounded-2xl border border-theme p-6 shadow-sm space-y-3">
+        <div class="flex justify-between items-start">
+          <div>
+            <span class="text-2xs font-bold uppercase text-theme-muted">Secondary Scope (PRJ-02)</span>
+            <h4 class="text-base font-bold text-theme-main mt-0.5">Exchange Quota Remediation & Inactive License Recovery</h4>
+          </div>
+          <span class="text-sm font-extrabold text-theme-main">$7,850 NZD</span>
+        </div>
+        <p class="text-2xs text-theme-muted leading-relaxed">
+          Provides emergency quota intervention for key leads at 95–101% quota (Matthew Wade, Brian Phelan, Adam Olson) to prevent email bounce risks. Enables 1.5 TB Auto-Expanding Cloud Archiving and converts 43 inactive mailboxes to free Shared Mailboxes to reclaim paid licenses.
+        </p>
+      </div>
+
+      <div class="bg-theme-card rounded-2xl border border-theme p-6 shadow-sm space-y-3">
+        <div class="flex justify-between items-start">
+          <div>
+            <span class="text-2xs font-bold uppercase text-theme-muted">Secondary Scope (PRJ-03)</span>
+            <h4 class="text-base font-bold text-theme-main mt-0.5">Project & Planner Modernization & License Rationalization</h4>
+          </div>
+          <span class="text-sm font-extrabold text-theme-main">$9,800 NZD</span>
+        </div>
+        <p class="text-2xs text-theme-muted leading-relaxed">
+          Downsizes non-power users from expensive <em>Project Plan 3</em> ($80+/mo) to standard Microsoft Planner, capturing <strong>~$5,814/yr</strong> in direct licensing savings. Builds standardized Alaska Teams Planner boards (Procurement, Subcontractors, Health & Safety, Handover).
+        </p>
+      </div>
+    </div>
+
+    <!-- Sign-Off Section -->
+    <div class="bg-theme-card rounded-2xl border border-theme p-8 shadow-sm">
+      <h3 class="text-lg font-bold text-theme-main mb-2">Acceptance & Milestone Authorization</h3>
+      <p class="text-xs text-theme-muted mb-6">
+        PRJ-01 is authorized as a standalone engagement on a fixed-fee milestone schedule: 50% upon project authorization and 50% upon completion and integrity sign-off.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 text-xs pt-4 border-t border-theme">
+        <div class="space-y-4">
+          <div class="font-bold text-theme-main uppercase tracking-wider text-2xs">Authorized on behalf of Alaska Construction:</div>
+          <div class="border-b border-theme pb-2 text-theme-muted">Signature</div>
+          <div class="border-b border-theme pb-2 text-theme-muted">Full Name & Title</div>
+          <div class="border-b border-theme pb-2 text-theme-muted">Date</div>
+        </div>
+        <div class="space-y-4">
+          <div class="font-bold text-theme-main uppercase tracking-wider text-2xs">Authorized on behalf of Circle IT Limited:</div>
+          <div class="border-b border-theme pb-2 font-bold text-theme-main">Michael Blackman</div>
+          <div class="border-b border-theme pb-2 text-theme-muted">Principal Consultant & Lead Cloud Architect</div>
+          <div class="border-b border-theme pb-2 text-theme-muted">30 October 2026</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-theme py-6 text-center text-xs text-theme-muted">
+    Circle Connect Modernization Proposal &bull; October 2026
+  </footer>
+
+  <!-- Theme Engine Script -->
+  <script>
+    function applySavedTheme() {
+      const savedTheme = localStorage.getItem('circle_theme') || 'circleit';
+      const savedMode = localStorage.getItem('circle_mode') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.documentElement.setAttribute('data-mode', savedMode);
+      
+      const sel = document.getElementById('themeSelector');
+      if (sel) sel.value = savedTheme;
+      
+      updateModeButton(savedMode);
+    }
+
+    function changeTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('circle_theme', theme);
+    }
+
+    function toggleMode() {
+      const current = document.documentElement.getAttribute('data-mode') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-mode', next);
+      localStorage.setItem('circle_mode', next);
+      updateModeButton(next);
+    }
+
+    function updateModeButton(mode) {
+      const icon = document.getElementById('modeIcon');
+      const label = document.getElementById('modeLabel');
+      if (mode === 'dark') {
+        if (icon) icon.className = 'fa-solid fa-sun text-amber-400';
+        if (label) label.textContent = 'Light';
+      } else {
+        if (icon) icon.className = 'fa-solid fa-moon text-indigo-500';
+        if (label) label.textContent = 'Dark';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', applySavedTheme);
+    applySavedTheme();
+  </script>
+</body>
+</html>
