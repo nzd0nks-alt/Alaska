@@ -39,6 +39,9 @@ def generate_html_dashboard(tenant_info, exchange_data, sharepoint_data, output_
         </div>
       </div>
       <div class="flex items-center space-x-3">
+        <a href="proposal.html" class="px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-500 text-xs font-bold text-white transition shadow-sm">
+          <i class="fa-solid fa-file-contract mr-1.5"></i> Modernization Proposal
+        </a>
         <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span> Live Graph API Connected
         </span>
@@ -289,3 +292,4 @@ def generate_html_dashboard(tenant_info, exchange_data, sharepoint_data, output_
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"Report generated successfully at: {output_file}")
+

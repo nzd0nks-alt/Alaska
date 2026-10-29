@@ -75,3 +75,4 @@ if __name__ == "__main__":
     print("Configured tenants:")
     for t in mgr.list_tenants():
         print(f" - [{t['id']}] {t['displayName']} ({t['primaryDomain']})")
+

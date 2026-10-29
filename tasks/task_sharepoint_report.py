@@ -90,3 +90,4 @@ def run_sharepoint_audit(client, period="D30"):
         "archive_candidates": stagnant_archive_candidates,
         "top_sites": all_sites[:15]
     }
+

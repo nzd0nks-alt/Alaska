@@ -94,3 +94,4 @@ def run_exchange_audit(client, period="D30"):
         "top_mailboxes": all_users[:15],
         "inactive_accounts": inactive_accounts
     }
+
