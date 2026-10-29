@@ -1,0 +1,20 @@
+{
+  "tenants": [
+    {
+      "id": "alaska",
+      "displayName": "Alaska Construction & Interiors",
+      "primaryDomain": "alaska.co.nz",
+      "tenantId": "621d0682-74a0-43b0-9167-92fafda77e77",
+      "clientId": "YOUR_CLIENT_ID",
+      "clientSecret": "YOUR_CLIENT_SECRET"
+    },
+    {
+      "id": "example-client",
+      "displayName": "Example Client Co",
+      "primaryDomain": "client.co.nz",
+      "tenantId": "00000000-0000-0000-0000-000000000000",
+      "clientId": "00000000-0000-0000-0000-000000000000",
+      "clientSecret": "secret-value"
+    }
+  ]
+}

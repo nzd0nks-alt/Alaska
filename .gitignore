@@ -3,3 +3,17 @@
 ICloud PW.csv
 *password*
 *Password*
+.env
+*.env
+*.token
+*.secret
+.token_cache.json
+*.cache
+tenants/*.json
+!tenants/tenants.template.json
+Alaska_Live_Audit_Data.json
+reports/*
+!reports/.gitkeep
+scratch/*
+web/*
+!web/.gitkeep
