@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alaska Construction & Interiors — IT Cloud & Licensing Review</title>
+  <style>
+    :root {
+      --alaska-black: #121417;
+      --alaska-dark: #1b1e23;
+      --alaska-slate: #282c34;
+      --alaska-orange: #e85d04;
+      --alaska-orange-hover: #dc2f02;
+      --alaska-light-gray: #f4f5f7;
+      --alaska-border: #e2e5ea;
+      --text-main: #1e232a;
+      --text-muted: #6b7280;
+      --success: #15803d;
+      --danger: #b91c1c;
+      --warning: #b45309;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      margin: 0;
+      background: var(--alaska-light-gray);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+    header {
+      background: var(--alaska-black);
+      color: #ffffff;
+      padding: 1.25rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid var(--alaska-orange);
+    }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .brand-logo-svg {
+      width: 44px;
+      height: 44px;
+      fill: var(--alaska-orange);
+    }
+    .brand-text h1 {
+      margin: 0;
+      font-size: 1.25rem;
+      letter-spacing: 2px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .brand-text span {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 2px;
+    }
+    .tenant-badge {
+      text-align: right;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+    .tenant-badge strong {
+      color: #ffffff;
+    }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      padding: 1.5rem 2.5rem 0.5rem;
+    }
+    .kpi-card {
+      background: #ffffff;
+      padding: 1.25rem 1.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--alaska-border);
+      border-top: 3px solid var(--alaska-dark);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .kpi-card.highlight {
+      border-top-color: var(--alaska-orange);
+    }
+    .kpi-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+    .kpi-val {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--alaska-black);
+      margin: 0.35rem 0 0.2rem;
+    }
+    .kpi-sub {
+      font-size: 0.8rem;
+      color: var(--success);
+      font-weight: 600;
+    }
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.75rem 2.5rem 0;
+    }
+    .tab-btn {
+      background: #e2e8f0;
+      border: none;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 4px 4px 0 0;
+      color: var(--alaska-dark);
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: #ffffff;
+      color: var(--alaska-orange);
+      border-top: 3px solid var(--alaska-orange);
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 1.75rem;
+      padding: 1rem 2.5rem 2.5rem;
+    }
+    .card-panel {
+      background: #ffffff;
+      border-radius: 4px;
+      border: 1px solid var(--alaska-border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      height: 640px;
+    }
+    .panel-header {
+      padding: 0.85rem 1.25rem;
+      background: #fafbfc;
+      border-bottom: 1px solid var(--alaska-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .panel-header h3 {
+      margin: 0;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 800;
+      color: var(--alaska-black);
+    }
+    .filter-btn-group {
+      display: flex;
+      gap: 0.35rem;
+      padding: 0.5rem 1.25rem;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--alaska-border);
+      overflow-x: auto;
+    }
+    .filter-chip {
+      background: #ffffff;
+      border: 1px solid var(--alaska-border);
+      padding: 0.25rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .filter-chip.active {
+      background: var(--alaska-black);
+      color: #ffffff;
+      border-color: var(--alaska-black);
+    }
+    .search-box {
+      padding: 0.4rem 0.75rem;
+      border: 1px solid var(--alaska-border);
+      border-radius: 4px;
+      font-size: 0.85rem;
+      width: 190px;
+      outline: none;
+    }
+    .search-box:focus {
+      border-color: var(--alaska-orange);
+    }
+    .user-list {
+      overflow-y: auto;
+      flex: 1;
+    }
+    .user-item {
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid var(--alaska-border);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.15s ease;
+    }
+    .user-item:hover {
+      background: #f8fafc;
+    }
+    .user-item.active {
+      background: #fff6ed;
+      border-left: 4px solid var(--alaska-orange);
+    }
+    .user-title {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--alaska-black);
+    }
+    .user-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .status-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.25rem 0.55rem;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .tag-danger { background: #fee2e2; color: var(--danger); }
+    .tag-warning { background: #fef3c7; color: var(--warning); }
+    .tag-success { background: #dcfce7; color: var(--success); }
+    .tag-neutral { background: #e2e8f0; color: #475569; }
+
+    .detail-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .profile-heading {
+      border-bottom: 2px solid var(--alaska-light-gray);
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.15rem;
+    }
+    .profile-heading h2 {
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--alaska-black);
+    }
+    .profile-heading p {
+      margin: 0.3rem 0 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+    .metric-box {
+      background: #fafbfc;
+      border: 1px solid var(--alaska-border);
+      border-radius: 4px;
+      padding: 0.75rem 0.9rem;
+    }
+    .metric-name {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      font-weight: 700;
+    }
+    .metric-val {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--alaska-black);
+      margin-top: 0.2rem;
+    }
+    .bar-bg {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.45rem;
+    }
+    .bar-fill {
+      height: 100%;
+      background: var(--alaska-orange);
+    }
+    .badge-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.45rem;
+    }
+    .license-pill {
+      background: #f1f5f9;
+      color: var(--alaska-dark);
+      border: 1px solid #cbd5e1;
+      padding: 0.3rem 0.65rem;
+      border-radius: 3px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .recommendation-panel {
+      margin-top: 1.25rem;
+      border-left: 4px solid var(--alaska-orange);
+      background: #fff8f1;
+      padding: 1.15rem;
+      border-radius: 0 4px 4px 0;
+    }
+    .recommendation-panel.danger {
+      border-left-color: var(--danger);
+      background: #fef2f2;
+    }
+    .recommendation-panel h4 {
+      margin: 0 0 0.3rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--alaska-black);
+    }
+    .recommendation-panel p {
+      margin: 0;
+      font-size: 0.83rem;
+      line-height: 1.45;
+      color: #334155;
+    }
+    /* SharePoint Tab Styles */
+    .table-panel {
+      padding: 1.5rem 2.5rem 2.5rem;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      border: 1px solid var(--alaska-border);
+      border-radius: 4px;
+      overflow: hidden;
+      font-size: 0.85rem;
+    }
+    .data-table th {
+      background: var(--alaska-black);
+      color: #ffffff;
+      text-align: left;
+      padding: 0.75rem 1rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .data-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--alaska-border);
+    }
+    .data-table tr:hover {
+      background: #f8fafc;
+    }
+    .highlight-row {
+      background: #fff9f5;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-wrap">
+      <svg class="brand-logo-svg" viewBox="0 0 100 100">
+        <polygon points="50,12 88,88 12,88" />
+        <polygon points="50,38 72,82 28,82" fill="#121417" />
+        <rect x="38" y="60" width="24" height="6" fill="#e85d04" />
+      </svg>
+      <div class="brand-text">
+        <h1>Alaska Interiors</h1>
+        <span>Technology & Cloud Architecture Audit</span>
+      </div>
+    </div>
+    <div class="tenant-badge">
+      Tenant Domain: <strong>alaska.co.nz</strong><br>
+      Optimized Review: <strong>September 2026</strong>
+    </div>
+  </header>
+
+  <div class="kpi-row">
+    <div class="kpi-card highlight">
+      <div class="kpi-label">Immediate Mailbox Savings</div>
+      <div class="kpi-val">$961 / yr</div>
+      <div class="kpi-sub">Double-licenses & inactive mailboxes</div>
+    </div>
+    <div class="kpi-card highlight">
+      <div class="kpi-label">SharePoint Storage Reduction</div>
+      <div class="kpi-val">$8,100 / yr</div>
+      <div class="kpi-sub">Eliminate $800/mo storage add-on</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Adobe Upfront Transition</div>
+      <div class="kpi-val">$9,908 / yr</div>
+      <div class="kpi-sub">Eliminates $27k reseller liability</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Project Plan 3 Optimization</div>
+      <div class="kpi-val">$5,814 / yr</div>
+      <div class="kpi-sub">Downgrading non-schedulers</div>
+    </div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('users')">User & Mailbox Diagnostics</button>
+    <button class="tab-btn" onclick="switchTab('sharepoint')">SharePoint Storage Architecture</button>
+    <button class="tab-btn" onclick="switchTab('commercial')">Commercial Summary & Action Plan</button>
+  </div>
+
+  <!-- TAB 1: USERS -->
+  <div id="tab-users" class="tab-content active">
+    <div class="main-grid">
+      <!-- User Selection Table -->
+      <div class="card-panel">
+        <div class="panel-header">
+          <h3>User Directory (<span id="count"></span>)</h3>
+          <input type="text" id="filter" class="search-box" placeholder="Filter name, role, email...">
+        </div>
+        <div class="filter-btn-group">
+          <button class="filter-chip active" onclick="setCategory('ALL')">All</button>
+          <button class="filter-chip" onclick="setCategory('ACTION')">Immediate Action</button>
+          <button class="filter-chip" onclick="setCategory('FULL')">Critical Storage (&gt;90%)</button>
+          <button class="filter-chip" onclick="setCategory('FIELD')">Site Managers</button>
+          <button class="filter-chip" onclick="setCategory('VALID')">Healthy / Valid</button>
+        </div>
+        <div class="user-list" id="list"></div>
+      </div>
+
+      <!-- Inspector Panel -->
+      <div class="card-panel">
+        <div class="panel-header">
+          <h3>Diagnostic Inspector</h3>
+        </div>
+        <div class="detail-body" id="details">
+          <div style="text-align: center; color: var(--text-muted); margin-top: 180px;">
+            Select a staff member on the left to inspect licensing, quotas, and optimization actions.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: SHAREPOINT -->
+  <div id="tab-sharepoint" class="tab-content">
+    <div class="table-panel">
+      <div style="margin-bottom: 1rem; background: #ffffff; padding: 1.25rem; border: 1px solid var(--alaska-border); border-left: 4px solid var(--alaska-orange);">
+        <h3 style="margin: 0 0 0.4rem; font-size: 1rem; text-transform: uppercase;">SharePoint Footprint Analysis (4,363.89 GB Total)</h3>
+        <p style="margin: 0; font-size: 0.85rem; color: #475569;">
+          Alaska's base pooled quota covers ~2,364 GB. Alaska is currently billed <strong>$800.00/month ($9,600/yr)</strong> for 2,000 GB in extra file storage. 
+          <strong>92% of company storage is concentrated in 4 sites</strong>, including 790 GB in closed archive sites sitting on expensive active storage ($0.40/GB/mo).
+        </p>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Site Name</th>
+            <th>Storage Used</th>
+            <th>File Count</th>
+            <th>% of Tenant</th>
+            <th>Monthly Billed Cost</th>
+            <th>Strategic Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td><strong>Tenders</strong></td>
+            <td>2,027.53 GB</td>
+            <td>530,731</td>
+            <td>46.5%</td>
+            <td>$811.01 / mo</td>
+            <td>Apply automated version history limit (trimming saves ~500–700 GB).</td>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong>Contracts</strong></td>
+            <td>1,191.27 GB</td>
+            <td>577,771</td>
+            <td>27.3%</td>
+            <td>$476.51 / mo</td>
+            <td>Apply automated version trimming; target completed project subfolders for cold archive.</td>
+          </tr>
+          <tr style="background: #fee2e2;">
+            <td><strong>Archive Contracts</strong></td>
+            <td>530.28 GB</td>
+            <td>537,350</td>
+            <td>12.2%</td>
+            <td>$212.11 / mo</td>
+            <td><strong>MOVE TO M365 COLD ARCHIVE:</strong> Inactive closed contracts. Drops cost to $0.05/GB ($26.50/mo), saving $185.61/mo immediately.</td>
+          </tr>
+          <tr style="background: #fee2e2;">
+            <td><strong>Archive Tenders</strong></td>
+            <td>259.82 GB</td>
+            <td>239,341</td>
+            <td>6.0%</td>
+            <td>$103.93 / mo</td>
+            <td><strong>MOVE TO M365 COLD ARCHIVE:</strong> Inactive closed tenders. Drops cost to $0.05/GB ($13.00/mo), saving $90.93/mo immediately.</td>
+          </tr>
+          <tr>
+            <td><strong>Project Images &amp; Case Study Docs</strong></td>
+            <td>183.89 GB</td>
+            <td>13,514</td>
+            <td>4.2%</td>
+            <td>$73.56 / mo</td>
+            <td>Heavy media library (14 MB/file avg). Offload raw drone footage/video to Azure Cold Blob ($3.60/mo).</td>
+          </tr>
+          <tr>
+            <td><strong>Remaining 15 Sites Combined</strong></td>
+            <td>171.10 GB</td>
+            <td>185,937</td>
+            <td>3.8%</td>
+            <td>$68.44 / mo</td>
+            <td>Accounts, HR, Admin, H&amp;S. Storage usage is normal and healthy.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB 3: COMMERCIAL -->
+  <div id="tab-commercial" class="tab-content">
+    <div class="table-panel">
+      <div style="background: #ffffff; padding: 1.5rem; border: 1px solid var(--alaska-border); border-radius: 4px;">
+        <h3 style="margin-top: 0; text-transform: uppercase; color: var(--alaska-black);">Consolidated Annual Value Blueprint</h3>
+        <table class="data-table" style="margin-top: 1rem;">
+          <thead>
+            <tr>
+              <th>Workstream / Area</th>
+              <th>Current Baseline</th>
+              <th>Proposed Target State</th>
+              <th>Alaska Net Annual Savings</th>
+              <th>Risk Profile</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>SharePoint Storage</strong></td>
+              <td>$800.00 / mo ($9,600/yr) add-on for 2,000 GB</td>
+              <td>M365 Cold Archive for 790 GB archives + version trim on Tenders/Contracts</td>
+              <td style="color: var(--success); font-weight: 800;">$8,100.00 / yr</td>
+              <td>Zero file loss; data preserved inside tenant.</td>
+            </tr>
+            <tr>
+              <td><strong>Adobe VIPMP Transition</strong></td>
+              <td>Monthly flexible invoices across 78 Acrobat &amp; 8 InDesign</td>
+              <td>Annual commitment billing; eliminates $27k reseller liability</td>
+              <td style="color: var(--success); font-weight: 800;">$9,908.84 / yr</td>
+              <td>Zero operational change for end users.</td>
+            </tr>
+            <tr>
+              <td><strong>Project Plan 3 Rightsizing</strong></td>
+              <td>53 users licensed @ $48.50/mo ($2,522/mo)</td>
+              <td>Trim ~15 non-schedulers down to included Planner</td>
+              <td style="color: var(--success); font-weight: 800;">$5,814.00 / yr</td>
+              <td>Low; users retain full task view and update capability.</td>
+            </tr>
+            <tr>
+              <td><strong>Mailbox Licensing Cleanup</strong></td>
+              <td>Duplicate E3+Plan 2 licenses &amp; licensed shared mailboxes</td>
+              <td>Remove duplicate Plan 2 and unlicense shared mailboxes &lt;50 GB</td>
+              <td style="color: var(--success); font-weight: 800;">$961.08 / yr</td>
+              <td>Zero risk; E3 includes 100 GB; shared mailboxes free.</td>
+            </tr>
+            <tr style="background: #fff6ed; font-size: 1rem; font-weight: 800;">
+              <td><strong>TOTAL OPTIMIZATION</strong></td>
+              <td>—</td>
+              <td>—</td>
+              <td style="color: var(--alaska-orange); font-size: 1.15rem;">$24,783.92 + GST / yr</td>
+              <td>High-impact operational efficiency</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const directory = [
+      {
+        name: "Robert Stretton",
+        email: "robert.stretton@alaska.co.nz",
+        role: "Project Lead",
+        category: "ACTION",
+        licenses: ["Office 365 E3", "Exchange Online (Plan 2)", "Adobe Acrobat Standard"],
+        mailbox_gb: 42.16,
+        quota_gb: 100,
+        archive: "Yes",
+        last_active: "2026-09-05",
+        status: "Double-Licensed",
+        tag: "tag-danger",
+        urgent: true,
+        action: "REMOVE Plan 2 immediately. Robert holds Office 365 E3 which ALREADY includes a 100 GB Exchange Plan 2 mailbox. Removing this duplicate standalone license saves $11.29/month ($135.48/year) with zero impact."
+      },
+      {
+        name: "Simon Sheldon",
+        email: "simon.sheldon@alaska.co.nz",
+        role: "Former Staff / Dormant Shared",
+        category: "ACTION",
+        licenses: ["Exchange Online (Plan 2)"],
+        mailbox_gb: 1.02,
+        quota_gb: 100,
+        archive: "Yes",
+        last_active: "2025-05-17",
+        status: "Inactive Account",
+        tag: "tag-danger",
+        urgent: true,
+        action: "REMOVE LICENSE. User has been inactive since May 2025. In Microsoft 365, shared mailboxes under 50 GB require NO paid license. Converting to free tier saves $11.29/month ($135.48/year)."
+      },
+      {
+        name: "Chris Robertson",
+        email: "Chris.Robertson@alaska.co.nz",
+        role: "Shared Mailbox",
+        category: "ACTION",
+        licenses: ["Exchange Online (Plan 2)"],
+        mailbox_gb: 12.75,
+        quota_gb: 100,
+        archive: "Yes",
+        last_active: "2026-09-05",
+        status: "Free Tier Eligible",
+        tag: "tag-danger",
+        urgent: true,
+        action: "REMOVE LICENSE. This shared mailbox consumes only 12.75 GB. Free M365 shared mailboxes include up to 50 GB. Remove Plan 2 to save $11.29/month ($135.48/year)."
+      },
+      {
+        name: "Stephen Thomas",
+        email: "stephen.thomas@alaska.co.nz",
+        role: "Site Manager",
+        category: "FIELD",
+        licenses: ["M365 Business Standard", "Exchange Online Archiving", "Adobe Acrobat Standard"],
+        mailbox_gb: 11.51,
+        quota_gb: 50,
+        archive: "Yes",
+        last_active: "2026-09-05",
+        status: "Redundant Add-on",
+        tag: "tag-warning",
+        urgent: false,
+        action: "REMOVE Archiving Add-on ($7.88/month). Mailbox is only 11.5 GB. Business Standard includes 50 GB standard capacity (38.5 GB remaining). Switch from paid Acrobat Standard to free Acrobat Reader."
+      },
+      {
+        name: "Brian Hutton",
+        email: "brian.hutton@alaska.co.nz",
+        role: "Site Manager",
+        category: "FIELD",
+        licenses: ["M365 Business Standard", "Exchange Online Archiving", "Adobe Acrobat Standard"],
+        mailbox_gb: 17.51,
+        quota_gb: 50,
+        archive: "Yes",
+        last_active: "2026-09-05",
+        status: "Redundant Add-on",
+        tag: "tag-warning",
+        urgent: false,
+        action: "REMOVE Archiving Add-on ($7.88/month). Mailbox is 17.5 GB, leaving 32.5 GB buffer in the standard included tier."
+      },
+      {
+        name: "Rory Adams",
+        email: "rory.adams@alaska.co.nz",
+        role: "Site Manager",
+        category: "FIELD",
+        licenses: ["M365 Business Standard", "Exchange Online Archiving", "Adobe Acrobat Standard"],
+        mailbox_gb: 32.89,
+        quota_gb: 50,
+        archive: "Yes",
+        last_active: "2026-09-04",
+        status: "Redundant Add-on",
+        tag: "tag-warning",
+        urgent: false,
+        action: "REMOVE Archiving Add-on ($7.88/month). Mailbox is 32.9 GB with 17.1 GB buffer remaining before needing an archive tier."
+      },
+      {
+        name: "Kevin Hawthorn",
+        email: "kevin.hawthorn@alaska.co.nz",
+        role: "Project Manager",
+        category: "ACTION",
+        licenses: ["M365 Business Standard", "Exchange Online (Plan 2)", "Adobe Acrobat Standard"],
+        mailbox_gb: 50.57,
+        quota_gb: 150,
+        archive: "No",
+        last_active: "2026-09-05",
+        status: "Cleanup Candidate",
+        tag: "tag-warning",
+        urgent: false,
+        action: "TARGET FOR CLEANUP: Only 0.57 GB over the standard 50 GB limit. Deleting 600 MB of deleted items/attachments allows dropping Plan 2 to save $11.29/month."
+      },
+      {
+        name: "Michael Handley",
+        email: "michael.handley@alaska.co.nz",
+        role: "Senior Project Manager",
+        category: "ACTION",
+        licenses: ["M365 Business Standard", "Exchange Online (Plan 2)", "Adobe Acrobat Standard"],
+        mailbox_gb: 52.42,
+        quota_gb: 150,
+        archive: "No",
+        last_active: "2026-09-04",
+        status: "Cleanup Candidate",
+        tag: "tag-warning",
+        urgent: false,
+        action: "TARGET FOR CLEANUP: Only 2.42 GB over the 50 GB threshold. Cleaning old mail items removes the need for Plan 2 ($11.29/month)."
+      },
+      {
+        name: "Rhys Hodgkinson",
+        email: "rhys.hodgkinson@alaska.co.nz",
+        role: "Site Manager",
+        category: "FULL",
+        licenses: ["M365 Business Standard", "Planner & Project Plan 3", "Adobe Acrobat Standard"],
+        mailbox_gb: 97.57,
+        quota_gb: 100,
+        archive: "No",
+        last_active: "2026-09-05",
+        status: "Mailbox Critical (98%)",
+        tag: "tag-danger",
+        urgent: true,
+        action: "URGENT: Mailbox is 97.6% full. Must enable auto-archiving to avoid send/receive disruption. Review Project Plan 3 ($48.50/month) if user only views Gantt schedules."
+      },
+      {
+        name: "Blair New",
+        email: "blair.new@alaska.co.nz",
+        role: "Site Manager",
+        category: "FULL",
+        licenses: ["M365 Business Standard", "Planner & Project Plan 3", "Adobe Acrobat Standard"],
+        mailbox_gb: 96.34,
+        quota_gb: 100,
+        archive: "No",
+        last_active: "2026-09-05",
+        status: "Mailbox Critical (96%)",
+        tag: "tag-danger",
+        urgent: true,
+        action: "URGENT: Mailbox is 96.3% full. Enable archiving immediately. Reassign Acrobat Standard to free Acrobat Reader (site managers only view/mark drawings)."
+      },
+      {
+        name: "John Lillywhite",
+        email: "john.lillywhite@alaska.co.nz",
+        role: "Site Manager",
+        category: "FULL",
+        licenses: ["M365 Business Standard", "Planner & Project Plan 3", "Adobe Acrobat Standard"],
+        mailbox_gb: 95.65,
+        quota_gb: 100,
+        archive: "No",
+        last_active: "2026-09-04",
+        status: "Mailbox Critical (96%)",
+        tag: "tag-danger",
+        urgent: true,
+        action: "URGENT: Mailbox is 95.6% full. Enable archiving immediately. Reassign Acrobat Standard to free Acrobat Reader."
+      },
+      {
+        name: "Adam Olson",
+        email: "adam.olson@alaska.co.nz",
+        role: "Quantity Surveyor",
+        category: "VALID",
+        licenses: ["M365 Business Standard", "Planner & Project Plan 3", "Adobe Acrobat Standard"],
+        mailbox_gb: 85.43,
+        quota_gb: 100,
+        archive: "No",
+        last_active: "2026-09-04",
+        status: "Heavy User (Valid)",
+        tag: "tag-neutral",
+        urgent: false,
+        action: "Legitimate configuration. QS role requires active PDF editing for tender compilations and markups. Monitor mailbox as it approaches 85% capacity."
+      },
+      {
+        name: "Damian Brook",
+        email: "damian.brook@alaska.co.nz",
+        role: "South Island Regional Manager",
+        category: "VALID",
+        licenses: ["M365 Business Standard", "Exchange Online (Plan 2)", "Adobe Acrobat Standard"],
+        mailbox_gb: 82.03,
+        quota_gb: 150,
+        archive: "No",
+        last_active: "2026-09-04",
+        status: "Legitimate Plan 2",
+        tag: "tag-success",
+        urgent: false,
+        action: "Valid configuration. Regional manager handling heavy mailflow (82 GB). Needs the 100 GB+ mailbox."
+      },
+      {
+        name: "Nigel Silvester",
+        email: "nigel.silvester@alaska.co.nz",
+        role: "Quantity Surveyor",
+        category: "VALID",
+        licenses: ["M365 Business Standard", "Exchange Online Archiving", "Adobe Acrobat Standard"],
+        mailbox_gb: 60.90,
+        quota_gb: 100,
+        archive: "Yes",
+        last_active: "2026-09-04",
+        status: "Valid Archive",
+        tag: "tag-success",
+        urgent: false,
+        action: "Valid configuration. Mailbox is 60.9 GB (exceeds 50 GB base quota). The $7.88/month Archiving add-on is actively preventing mailbox lockouts."
+      }
+    ];
+
+    let currentCategory = 'ALL';
+    const listEl = document.getElementById('list');
+    const detailsEl = document.getElementById('details');
+    const filterEl = document.getElementById('filter');
+    const countEl = document.getElementById('count');
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+
+    function setCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      event.target.classList.add('active');
+      render(filterEl.value);
+    }
+
+    function render(term = '') {
+      listEl.innerHTML = '';
+      const matched = directory.filter(u => {
+        const matchesTerm = u.name.toLowerCase().includes(term.toLowerCase()) || 
+                            u.role.toLowerCase().includes(term.toLowerCase()) ||
+                            u.email.toLowerCase().includes(term.toLowerCase());
+        const matchesCat = currentCategory === 'ALL' || u.category === currentCategory;
+        return matchesTerm && matchesCat;
+      });
+      countEl.textContent = matched.length;
+
+      matched.forEach((user) => {
+        const item = document.createElement('div');
+        item.className = 'user-item';
+        item.innerHTML = `
+          <div>
+            <div class="user-title">${user.name}</div>
+            <div class="user-subtitle">${user.role}</div>
+          </div>
+          <span class="status-tag ${user.tag}">${user.status}</span>
+        `;
+        item.addEventListener('click', () => {
+          document.querySelectorAll('.user-item').forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+          showUser(user);
+        });
+        listEl.appendChild(item);
+      });
+    }
+
+    function showUser(user) {
+      const pct = Math.round((user.mailbox_gb / user.quota_gb) * 100);
+      detailsEl.innerHTML = `
+        <div class="profile-heading">
+          <h2>${user.name}</h2>
+          <p>${user.email} &bull; <strong>${user.role}</strong></p>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric-box">
+            <div class="metric-name">Storage Utilized</div>
+            <div class="metric-val">${user.mailbox_gb.toFixed(2)} GB</div>
+            <div class="bar-bg">
+              <div class="bar-fill" style="width:${Math.min(pct, 100)}%; background:${pct > 90 ? 'var(--danger)' : pct > 75 ? 'var(--warning)' : 'var(--alaska-orange)'};"></div>
+            </div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-name">Assigned Quota</div>
+            <div class="metric-val">${user.quota_gb} GB</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.45rem;">${pct}% total capacity used</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-name">Online Archive State</div>
+            <div class="metric-val">${user.archive === 'Yes' ? 'Active' : 'Disabled'}</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-name">Last Mailbox Activity</div>
+            <div class="metric-val" style="font-size:1.05rem;">${user.last_active}</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="metric-name" style="margin-bottom:0.4rem;">Assigned License Subscriptions</div>
+          <div class="badge-wrap">
+            ${user.licenses.map(lic => `<span class="license-pill">${lic}</span>`).join('')}
+          </div>
+        </div>
+
+        <div class="recommendation-panel ${user.urgent ? 'danger' : ''}">
+          <h4>Actionable Optimization</h4>
+          <p>${user.action}</p>
+        </div>
+      `;
+    }
+
+    filterEl.addEventListener('input', (e) => render(e.target.value));
+    render();
+    if (directory.length > 0) {
+      document.querySelector('.user-item').classList.add('active');
+      showUser(directory[0]);
+    }
+  </script>
+</body>
+</html>

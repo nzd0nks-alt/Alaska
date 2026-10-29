@@ -1,0 +1,644 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2775.1">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Alaska Construction &amp; Interiors — IT Cloud &amp; Licensing Review&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>:root {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--alaska-black: #121417;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--alaska-dark: #1b1e23;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--alaska-slate: #282c34;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--alaska-orange: #e85d04;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--alaska-orange-hover: #dc2f02;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--alaska-light-gray: #f4f5f7;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--alaska-border: #e2e5ea;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--text-main: #1e232a;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--text-muted: #6b7280;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--success: #15803d;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--danger: #b91c1c;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--warning: #b45309;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>* { box-sizing: border-box; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: var(--alaska-light-gray);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-main);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>-webkit-font-smoothing: antialiased;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>header {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: var(--alaska-black);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 1.25rem 2.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 3px solid var(--alaska-orange);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.brand-wrap {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 1.25rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.brand-logo-svg {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 44px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 44px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>fill: var(--alaska-orange);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.brand-text h1 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.25rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 2px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 800;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.brand-text span {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #9ca3af;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 2px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tenant-badge {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: right;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #9ca3af;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tenant-badge strong {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.kpi-row {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(4, 1fr);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 1.25rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 1.75rem 2.5rem 0.75rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.kpi-card {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 1.25rem 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--alaska-border);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-top: 3px solid var(--alaska-dark);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 1px 3px rgba(0,0,0,0.03);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.kpi-card.highlight {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-top-color: var(--alaska-orange);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.kpi-label {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.75rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.kpi-val {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.75rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 800;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--alaska-black);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0.4rem 0 0.2rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.kpi-sub {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--success);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.main-grid {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: 1fr 1.15fr;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 1.75rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 1rem 2.5rem 2.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.card-panel {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--alaska-border);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 1px 3px rgba(0,0,0,0.03);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 620px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.panel-header {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 1rem 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #fafbfc;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 1px solid var(--alaska-border);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.panel-header h3 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 800;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--alaska-black);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.search-box {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.45rem 0.85rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--alaska-border);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 220px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>outline: none;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.search-box:focus {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-color: var(--alaska-orange);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.user-list {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>overflow-y: auto;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex: 1;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.user-item {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.9rem 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 1px solid var(--alaska-border);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: all 0.15s ease;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.user-item:hover {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #f8fafc;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.user-item.active {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #fff6ed;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-left: 4px solid var(--alaska-orange);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.user-title {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--alaska-black);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.user-subtitle {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 2px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.status-tag {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.72rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.25rem 0.6rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 3px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 0.5px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tag-danger { background: #fee2e2; color: var(--danger); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tag-warning { background: #fef3c7; color: var(--warning); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tag-success { background: #dcfce7; color: var(--success); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tag-neutral { background: #e2e8f0; color: #475569; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.detail-body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 1.75rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>overflow-y: auto;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex: 1;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.profile-heading {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 2px solid var(--alaska-light-gray);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding-bottom: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 1.25rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.profile-heading h2 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.4rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 800;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--alaska-black);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.profile-heading p {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0.35rem 0 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.metric-grid {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(2, 1fr);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.metric-box {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #fafbfc;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--alaska-border);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.85rem 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.metric-name {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.72rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 0.5px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.metric-val {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.25rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 800;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--alaska-black);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0.25rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.bar-bg {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #e2e8f0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.bar-fill {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: var(--alaska-orange);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.badge-wrap {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.license-pill {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #f1f5f9;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--alaska-dark);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid #cbd5e1;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.35rem 0.75rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 3px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.recommendation-panel {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-left: 4px solid var(--alaska-orange);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #fff8f1;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 1.25rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 0 4px 4px 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.recommendation-panel.danger {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-left-color: var(--danger);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #fef2f2;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.recommendation-panel h4 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 0.35rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 0.5px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--alaska-black);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.recommendation-panel p {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.5;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #334155;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;header&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="brand-wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;svg class="brand-logo-svg" viewBox="0 0 100 100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;polygon points="50,12 88,88 12,88" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;polygon points="50,38 72,82 28,82" fill="#121417" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;rect x="38" y="60" width="24" height="6" fill="#e85d04" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="brand-text"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1&gt;Alaska Interiors&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;Technology &amp; Cloud Architecture Audit&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="tenant-badge"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Tenant Domain: &lt;strong&gt;alaska.co.nz&lt;/strong&gt;&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Optimized Review: &lt;strong&gt;September 2026&lt;/strong&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="kpi-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="kpi-card highlight"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="kpi-label"&gt;Immediate Mailbox Savings&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="kpi-val"&gt;$961 / yr&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="kpi-sub"&gt;Double-licenses &amp; inactive mailboxes&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="kpi-card highlight"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="kpi-label"&gt;SharePoint Storage Reduction&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="kpi-val"&gt;$8,100 / yr&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="kpi-sub"&gt;Cold Archive &amp; version control&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="kpi-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="kpi-label"&gt;Adobe Upfront Transition&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="kpi-val"&gt;$9,908 / yr&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="kpi-sub"&gt;Eliminates wholesale liability&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="kpi-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="kpi-label"&gt;Project Plan 3 Optimization&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="kpi-val"&gt;$5,814 / yr&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="kpi-sub"&gt;Downgrading non-schedulers&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="main-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- User Selection Table --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-panel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="panel-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;User Directory (&lt;span id="count"&gt;&lt;/span&gt;)&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="text" id="filter" class="search-box" placeholder="Filter by name or role..."&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="user-list" id="list"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Inspector Panel --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-panel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="panel-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Diagnostic Overview&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="detail-body" id="details"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div style="text-align: center; color: var(--text-muted); margin-top: 180px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Select a staff member on the left to inspect licensing, quotas, and optimization actions.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const directory = [</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Robert Stretton",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>email: "robert.stretton@alaska.co.nz",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>role: "Project Lead",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>licenses: ["Office 365 E3", "Exchange Online (Plan 2)", "Adobe Acrobat Standard"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mailbox_gb: 42.16,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>quota_gb: 100,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>archive: "Yes",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>last_active: "2026-09-05",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>status: "Double-Licensed",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tag: "tag-danger",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>urgent: true,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>action: "REMOVE Plan 2 immediately. Robert holds Office 365 E3 which ALREADY includes a 100 GB Exchange Plan 2 mailbox. Removing this duplicate standalone license saves $11.29/month ($135.48/year) with zero impact."</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Simon Sheldon",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>email: "simon.sheldon@alaska.co.nz",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>role: "Former Staff / Dormant Shared",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>licenses: ["Exchange Online (Plan 2)"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mailbox_gb: 1.02,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>quota_gb: 100,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>archive: "Yes",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>last_active: "2025-05-17",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>status: "Inactive Account",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tag: "tag-danger",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>urgent: true,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>action: "REMOVE LICENSE. User has been inactive since May 2025. In Microsoft 365, shared mailboxes under 50 GB require NO paid license. Converting to free tier saves $11.29/month ($135.48/year)."</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Chris Robertson",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>email: "Chris.Robertson@alaska.co.nz",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>role: "Shared Mailbox",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>licenses: ["Exchange Online (Plan 2)"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mailbox_gb: 12.75,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>quota_gb: 100,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>archive: "Yes",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>last_active: "2026-09-05",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>status: "Free Tier Eligible",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tag: "tag-danger",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>urgent: true,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>action: "REMOVE LICENSE. This shared mailbox consumes only 12.75 GB. Free M365 shared mailboxes include up to 50 GB. Remove Plan 2 to save $11.29/month ($135.48/year)."</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Stephen Thomas",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>email: "stephen.thomas@alaska.co.nz",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>role: "Site Manager",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>licenses: ["M365 Business Standard", "Exchange Online Archiving", "Adobe Acrobat Standard"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mailbox_gb: 11.51,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>quota_gb: 50,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>archive: "Yes",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>last_active: "2026-09-05",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>status: "Redundant Add-on",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tag: "tag-warning",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>urgent: false,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>action: "REMOVE Archiving Add-on ($7.88/month). Mailbox is only 11.5 GB. Business Standard includes 50 GB standard capacity (38.5 GB remaining). Can also switch from Acrobat Standard to free Acrobat Reader."</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Brian Hutton",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>email: "brian.hutton@alaska.co.nz",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>role: "Site Manager",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>licenses: ["M365 Business Standard", "Exchange Online Archiving", "Adobe Acrobat Standard"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mailbox_gb: 17.51,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>quota_gb: 50,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>archive: "Yes",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>last_active: "2026-09-05",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>status: "Redundant Add-on",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tag: "tag-warning",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>urgent: false,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>action: "REMOVE Archiving Add-on ($7.88/month). Mailbox is 17.5 GB, leaving 32.5 GB buffer in the standard included tier."</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Rory Adams",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>email: "rory.adams@alaska.co.nz",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>role: "Site Manager",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>licenses: ["M365 Business Standard", "Exchange Online Archiving", "Adobe Acrobat Standard"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mailbox_gb: 32.89,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>quota_gb: 50,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>archive: "Yes",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>last_active: "2026-09-04",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>status: "Redundant Add-on",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tag: "tag-warning",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>urgent: false,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>action: "REMOVE Archiving Add-on ($7.88/month). Mailbox is 32.9 GB with 17.1 GB buffer remaining before needing an archive tier."</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Kevin Hawthorn",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>email: "kevin.hawthorn@alaska.co.nz",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>role: "Project Manager",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>licenses: ["M365 Business Standard", "Exchange Online (Plan 2)", "Adobe Acrobat Standard"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mailbox_gb: 50.57,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>quota_gb: 150,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>archive: "No",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>last_active: "2026-09-05",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>status: "Cleanup Candidate",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tag: "tag-warning",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>urgent: false,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>action: "TARGET FOR CLEANUP: Only 0.57 GB over the standard 50 GB limit. Deleting 600 MB of deleted items/attachments allows dropping Plan 2 to save $11.29/month."</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Michael Handley",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>email: "michael.handley@alaska.co.nz",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>role: "Senior Project Manager",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>licenses: ["M365 Business Standard", "Exchange Online (Plan 2)", "Adobe Acrobat Standard"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mailbox_gb: 52.42,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>quota_gb: 150,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>archive: "No",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>last_active: "2026-09-04",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>status: "Cleanup Candidate",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tag: "tag-warning",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>urgent: false,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>action: "TARGET FOR CLEANUP: Only 2.42 GB over the 50 GB threshold. Cleaning old mail items removes the need for Plan 2 ($11.29/month)."</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Rhys Hodgkinson",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>email: "rhys.hodgkinson@alaska.co.nz",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>role: "Site Manager",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>licenses: ["M365 Business Standard", "Planner &amp; Project Plan 3", "Adobe Acrobat Standard"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mailbox_gb: 97.57,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>quota_gb: 100,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>archive: "No",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>last_active: "2026-09-05",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>status: "Mailbox Critical (98%)",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tag: "tag-danger",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>urgent: true,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>action: "URGENT: Mailbox is 97.6% full. Must enable auto-archiving to avoid send/receive disruption. Review Project Plan 3 ($48.50/month) if user only views Gantt schedules."</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Blair New",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>email: "blair.new@alaska.co.nz",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>role: "Site Manager",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>licenses: ["M365 Business Standard", "Planner &amp; Project Plan 3", "Adobe Acrobat Standard"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mailbox_gb: 96.34,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>quota_gb: 100,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>archive: "No",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>last_active: "2026-09-05",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>status: "Mailbox Critical (96%)",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tag: "tag-danger",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>urgent: true,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>action: "URGENT: Mailbox is 96.3% full. Enable archiving immediately. Reassign Acrobat Standard to free Acrobat Reader (site managers only view/mark drawings)."</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Adam Olson",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>email: "adam.olson@alaska.co.nz",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>role: "Quantity Surveyor",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>licenses: ["M365 Business Standard", "Planner &amp; Project Plan 3", "Adobe Acrobat Standard"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mailbox_gb: 85.43,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>quota_gb: 100,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>archive: "No",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>last_active: "2026-09-04",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>status: "Heavy User (Valid)",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tag: "tag-neutral",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>urgent: false,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>action: "Legitimate configuration. QS role requires active PDF editing for tender compilations and markups. Monitor mailbox as it approaches 85% capacity."</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Damian Brook",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>email: "damian.brook@alaska.co.nz",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>role: "South Island Regional Manager",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>licenses: ["M365 Business Standard", "Exchange Online (Plan 2)", "Adobe Acrobat Standard"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mailbox_gb: 82.03,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>quota_gb: 150,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>archive: "No",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>last_active: "2026-09-04",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>status: "Legitimate Plan 2",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tag: "tag-success",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>urgent: false,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>action: "Valid configuration. Regional manager handling heavy mailflow (82 GB). Needs the 100 GB+ mailbox."</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Nigel Silvester",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>email: "nigel.silvester@alaska.co.nz",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>role: "Quantity Surveyor",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>licenses: ["M365 Business Standard", "Exchange Online Archiving", "Adobe Acrobat Standard"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mailbox_gb: 60.90,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>quota_gb: 100,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>archive: "Yes",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>last_active: "2026-09-04",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>status: "Valid Archive",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tag: "tag-success",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>urgent: false,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>action: "Valid configuration. Mailbox is 60.9 GB (exceeds 50 GB base quota). The $7.88/month Archiving add-on is actively preventing mailbox lockouts."</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const listEl = document.getElementById('list');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const detailsEl = document.getElementById('details');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const filterEl = document.getElementById('filter');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const countEl = document.getElementById('count');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function render(term = '') {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>listEl.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const matched = directory.filter(u =&gt;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>u.name.toLowerCase().includes(term.toLowerCase()) ||<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>u.role.toLowerCase().includes(term.toLowerCase()) ||</p>
+<p class="p1"><span class="Apple-converted-space">        </span>u.email.toLowerCase().includes(term.toLowerCase())</p>
+<p class="p1"><span class="Apple-converted-space">      </span>);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>countEl.textContent = matched.length;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>matched.forEach((user) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const item = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>item.className = 'user-item';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>item.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="user-title"&gt;${user.name}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="user-subtitle"&gt;${user.role}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span class="status-tag ${user.tag}"&gt;${user.status}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>item.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>document.querySelectorAll('.user-item').forEach(i =&gt; i.classList.remove('active'));</p>
+<p class="p1"><span class="Apple-converted-space">          </span>item.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>showUser(user);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>listEl.appendChild(item);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function showUser(user) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const pct = Math.round((user.mailbox_gb / user.quota_gb) * 100);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>detailsEl.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="profile-heading"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h2&gt;${user.name}&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;${user.email} &amp;bull; &lt;strong&gt;${user.role}&lt;/strong&gt;&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="metric-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="metric-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-name"&gt;Storage Utilized&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-val"&gt;${user.mailbox_gb.toFixed(2)} GB&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bar-bg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="bar-fill" style="width:${Math.min(pct, 100)}%; background:${pct &gt; 90 ? 'var(--danger)' : pct &gt; 75 ? 'var(--warning)' : 'var(--alaska-orange)'};"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="metric-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-name"&gt;Assigned Quota&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-val"&gt;${user.quota_gb} GB&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.45rem;"&gt;${pct}% total capacity used&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="metric-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-name"&gt;Online Archive State&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-val"&gt;${user.archive === 'Yes' ? 'Active' : 'Disabled'}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="metric-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-name"&gt;Last Mailbox Activity&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-val" style="font-size:1.05rem;"&gt;${user.last_active}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="metric-name" style="margin-bottom:0.4rem;"&gt;Assigned License Subscriptions&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="badge-wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>${user.licenses.map(lic =&gt; `&lt;span class="license-pill"&gt;${lic}&lt;/span&gt;`).join('')}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="recommendation-panel ${user.urgent ? 'danger' : ''}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h4&gt;Actionable Optimization&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;${user.action}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>filterEl.addEventListener('input', (e) =&gt; render(e.target.value));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>render();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (directory.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.querySelector('.user-item').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>showUser(directory[0]);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>

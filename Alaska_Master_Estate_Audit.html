@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alaska Interiors — Unified Master Audit & Rationalization</title>
+  <style>
+    :root {
+      --alaska-green: #1f3a34;
+      --alaska-green-light: #f2f7f5;
+      --alaska-charcoal: #1a1a1a;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --bg-white: #ffffff;
+      --border-color: #e5e7eb;
+      --success: #15803d;
+      --danger: #b91c1c;
+      --warning: #b45309;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; background: #f9fafb; color: var(--text-main); }
+    header { background: var(--bg-white); padding: 1.4rem 2.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--alaska-charcoal); }
+    .brand-wrap { display: flex; align-items: center; gap: 1.25rem; }
+    .brand-logo-svg { width: 40px; height: 46px; }
+    .brand-text h1 { margin: 0; font-size: 1.3rem; letter-spacing: 2px; font-weight: 800; text-transform: uppercase; color: var(--alaska-charcoal); }
+    .brand-text span { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
+    
+    .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; padding: 1.5rem 2.5rem; }
+    .kpi-card { padding: 1.25rem; background: var(--bg-white); border: 1px solid var(--border-color); border-top: 3px solid var(--alaska-charcoal); border-radius: 4px; }
+    .kpi-card.highlight { border-top-color: var(--alaska-green); }
+    .kpi-label { font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+    .kpi-val { font-size: 1.7rem; font-weight: 800; margin: 0.35rem 0; }
+    .kpi-sub { font-size: 0.8rem; color: var(--success); font-weight: 600; }
+
+    .nav-tabs { display: flex; gap: 0.5rem; padding: 0 2.5rem; border-bottom: 1px solid var(--border-color); background: var(--bg-white); }
+    .tab-btn { background: transparent; border: 1px solid transparent; padding: 0.85rem 1.5rem; font-size: 0.85rem; font-weight: 700; cursor: pointer; color: var(--text-muted); border-bottom: none; }
+    .tab-btn.active { color: var(--alaska-green); border-color: var(--border-color); border-top: 3px solid var(--alaska-green); border-bottom: 1px solid #f9fafb; margin-bottom: -1px; background: #f9fafb; }
+    
+    .tab-content { display: none; padding: 2rem 2.5rem; }
+    .tab-content.active { display: block; }
+
+    /* Commercial & SharePoint Tables */
+    .table-panel { background: var(--bg-white); border-radius: 4px; border: 1px solid var(--border-color); overflow: hidden; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .data-table th { background: var(--alaska-charcoal); color: #fff; text-align: left; padding: 0.85rem 1.25rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .data-table td { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-color); line-height: 1.4; }
+    .data-table tr:hover { background: #f9fafb; }
+    .data-table tr.highlight-row { background: #fafafa; font-weight: 600; }
+    .data-table tr.danger-row { background: #fff5f5; }
+
+    /* Survey Styles */
+    .survey-card { border: 1px solid var(--border-color); border-top: 3px solid var(--alaska-green); padding: 1.5rem; margin-bottom: 1.5rem; background: var(--bg-white); border-radius: 4px; }
+    .survey-question { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; font-size: 0.95rem; color: var(--alaska-charcoal); line-height: 1.4; }
+    .survey-question input[type="checkbox"] { width: 1.4rem; height: 1.4rem; margin-top: 0.1rem; accent-color: var(--alaska-green); cursor: pointer; }
+    .print-header { display: none; }
+
+    /* Live Importer Dashboard */
+    .upload-container { margin-bottom: 1.5rem; padding: 2rem; border: 2px dashed var(--alaska-green); border-radius: 6px; background: var(--alaska-green-light); text-align: center; }
+    .upload-container h2 { color: var(--alaska-charcoal); margin-top: 0; font-size: 1.2rem; }
+    .upload-btn { background: var(--alaska-green); color: white; border: none; padding: 0.65rem 1.25rem; border-radius: 4px; font-size: 0.9rem; font-weight: 700; cursor: pointer; margin-top: 0.5rem; }
+    
+    .dashboard-container { display: none; }
+    .main-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.75rem; }
+    .card-panel { background: var(--bg-white); border: 1px solid var(--border-color); display: flex; flex-direction: column; height: 680px; border-radius: 4px; }
+    .panel-header { padding: 0.85rem 1.25rem; background: #fafafa; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; border-radius: 4px 4px 0 0; }
+    .panel-header h3 { margin: 0; font-size: 0.85rem; text-transform: uppercase; font-weight: 800; }
+    .search-box { padding: 0.4rem 0.75rem; border: 1px solid var(--border-color); width: 220px; border-radius: 3px; font-size: 0.85rem; outline: none; }
+    .search-box:focus { border-color: var(--alaska-green); }
+    
+    .user-list { overflow-y: auto; flex: 1; }
+    .user-item { padding: 0.85rem 1.25rem; border-bottom: 1px solid var(--border-color); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .user-item:hover { background: #f9fafb; }
+    .user-item.active { background: var(--alaska-green-light); border-left: 4px solid var(--alaska-green); }
+    .status-tag { font-size: 0.68rem; font-weight: 700; padding: 0.25rem 0.55rem; border-radius: 2px; text-transform: uppercase; }
+    .tag-danger { background: #fee2e2; color: var(--danger); }
+    .tag-warning { background: #fef3c7; color: var(--warning); }
+    .tag-success { background: #dcfce7; color: var(--success); }
+    .tag-info { background: #dbeafe; color: #0369a1; }
+
+    .detail-body { padding: 1.5rem; overflow-y: auto; flex: 1; }
+    .metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; margin-bottom: 1.25rem; }
+    .metric-box { background: #fafafa; border: 1px solid var(--border-color); padding: 0.75rem 0.9rem; border-radius: 3px; }
+    .metric-name { font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+    .metric-val { font-size: 1.15rem; font-weight: 800; margin-top: 0.2rem; }
+    .recommendation-panel { margin-top: 1.25rem; border-left: 3px solid var(--alaska-green); background: var(--alaska-green-light); padding: 1.15rem; border-radius: 2px; }
+    .recommendation-panel.danger { border-left-color: var(--danger); background: #fef2f2; }
+    .recommendation-panel.warning { border-left-color: var(--warning); background: #fffbeb; }
+
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #fff; }
+      header, .kpi-row, .nav-tabs { display: none !important; }
+      .tab-content { display: block !important; padding: 0 !important; }
+      #tab-commercial, #tab-users, #tab-sharepoint { display: none !important; }
+      #tab-survey { display: block !important; }
+      .survey-card { break-inside: avoid; border: 1px solid #ccc; border-top: 3px solid #1f3a34; }
+      .print-header { display: block; margin-bottom: 2rem; }
+      .table-panel { border: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-wrap">
+      <svg class="brand-logo-svg" viewBox="0 0 100 110">
+        <polygon points="50,4 98,104 78,104 50,42 22,104 2,104" fill="#1f3a34" />
+        <polygon points="50,48 78,104 50,90 22,104" fill="#ffffff" />
+      </svg>
+      <div class="brand-text">
+        <h1>Alaska Interiors</h1>
+        <span>Master IT Estate Audit & Rationalization Dashboard</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="kpi-row">
+    <div class="kpi-card highlight">
+      <div class="kpi-label">AEC Software Consolidation</div>
+      <div class="kpi-val">$23,745 / yr</div>
+      <div class="kpi-sub">Replace Acrobat with Bluebeam Revu</div>
+    </div>
+    <div class="kpi-card highlight">
+      <div class="kpi-label">SharePoint Storage Reduction</div>
+      <div class="kpi-val">$8,100 / yr</div>
+      <div class="kpi-sub">Eliminate $800/mo active storage add-on</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Project Plan 3 Optimization</div>
+      <div class="kpi-val">$5,814 / yr</div>
+      <div class="kpi-sub">Downgrading non-schedulers to Planner</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Immediate Mailbox Savings</div>
+      <div class="kpi-val">$961 / yr</div>
+      <div class="kpi-sub">Double-licenses & inactive mailboxes</div>
+    </div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('commercial')">Commercial Value Blueprint</button>
+    <button class="tab-btn" onclick="switchTab('users')">Live 144-User Diagnostic</button>
+    <button class="tab-btn" onclick="switchTab('sharepoint')">SharePoint File Storage</button>
+    <button class="tab-btn" onclick="switchTab('survey')">Printable PM Survey</button>
+  </div>
+
+  <!-- TAB 1: COMMERCIAL -->
+  <div id="tab-commercial" class="tab-content active">
+    <div class="table-panel">
+      <div style="padding: 1.5rem; border-bottom: 1px solid var(--border-color);">
+        <h3 style="margin-top: 0; text-transform: uppercase; color: var(--alaska-charcoal); letter-spacing: 0.5px;">Consolidated Annual Value Blueprint</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">This model outlines the operational and financial impact of modernizing Alaska's AEC software stack and rightsizing existing Microsoft 365 utility.</p>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Workstream / Area</th>
+            <th>Current Baseline</th>
+            <th>Proposed Target State</th>
+            <th>Alaska Net Annual Savings</th>
+            <th>Risk Profile & Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>AEC PDF Modernization (Bluebeam)</strong></td>
+            <td>78x Acrobat Standard @ $35.64/mo + 8 InDesign</td>
+            <td>25x Bluebeam Core ($520/yr) + Free Site Viewers + 8 InDesign</td>
+            <td style="color: var(--success); font-weight: 800;">$23,745.52 / yr</td>
+            <td><strong>High Impact:</strong> Better markup tools for construction; zero cost for site teams.</td>
+          </tr>
+          <tr>
+            <td><strong>SharePoint Storage Architecture</strong></td>
+            <td>$800.00 / mo ($9,600/yr) add-on for 2,000 GB</td>
+            <td>M365 Cold Archive for 790 GB archives + version trimming</td>
+            <td style="color: var(--success); font-weight: 800;">$8,100.00 / yr</td>
+            <td><strong>Zero Data Loss:</strong> Closed projects preserved securely inside the tenant.</td>
+          </tr>
+          <tr>
+            <td><strong>Project Plan 3 Rightsizing</strong></td>
+            <td>53 users licensed @ $48.50/mo ($2,522/mo)</td>
+            <td>Trim ~15 non-schedulers down to included Planner</td>
+            <td style="color: var(--success); font-weight: 800;">$5,814.00 / yr</td>
+            <td><strong>Low Risk:</strong> Users retain task view and progress update capability.</td>
+          </tr>
+          <tr>
+            <td><strong>Mailbox Licensing Cleanup</strong></td>
+            <td>Duplicate E3+Plan 2 licenses & licensed shared mailboxes</td>
+            <td>Remove duplicate Plan 2 and unlicense shared mailboxes &lt;50 GB</td>
+            <td style="color: var(--success); font-weight: 800;">$961.08 / yr</td>
+            <td><strong>Zero Risk:</strong> E3 includes 100 GB naturally; shared mailboxes under 50GB are free.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB 2: LIVE USER DIRECTORY & IMPORTER -->
+  <div id="tab-users" class="tab-content">
+    <div class="upload-container" id="uploadContainer">
+      <h2>Select Alaska CSV Files to Merge</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Please select your <strong>Mailbox Usage</strong>, <strong>Archive Usage</strong>, <strong>Employee Directory</strong>, and <strong>Plan 2</strong> CSV files all at once.<br>The diagnostic engine will automatically merge all 144 users and calculate their optimization paths.</p>
+      <input type="file" id="csvFileInput" multiple accept=".csv" style="display: none;">
+      <button class="upload-btn" onclick="document.getElementById('csvFileInput').click()">Choose CSV Files</button>
+    </div>
+
+    <div class="dashboard-container" id="dashboardContainer">
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+        <div class="kpi-card highlight" style="padding: 1rem;">
+          <div class="kpi-label">Total Users Processed</div>
+          <div class="kpi-val" id="kpiTotalUsers" style="font-size: 1.4rem;">0</div>
+        </div>
+        <div class="kpi-card highlight" style="padding: 1rem;">
+          <div class="kpi-label">Total Estate Storage (Mailbox + Archive)</div>
+          <div class="kpi-val" id="kpiTotalStorage" style="font-size: 1.4rem;">0 GB</div>
+        </div>
+        <div class="kpi-card" style="padding: 1rem;">
+          <div class="kpi-label">Plan 2 Licenses Detected</div>
+          <div class="kpi-val" id="kpiPlan2" style="font-size: 1.4rem;">0</div>
+        </div>
+      </div>
+
+      <div class="main-grid">
+        <div class="card-panel">
+          <div class="panel-header">
+            <h3>Full Staff Roster</h3>
+            <input type="text" id="filter" class="search-box" placeholder="Search name or email...">
+          </div>
+          <div class="user-list" id="list"></div>
+        </div>
+        <div class="card-panel">
+          <div class="panel-header">
+            <h3>Data & Optimization Inspector</h3>
+          </div>
+          <div class="detail-body" id="details">
+            <div style="text-align: center; color: var(--text-muted); margin-top: 200px;">
+              Select a user to view combined storage, license footprint, and specific optimization recommendations.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: SHAREPOINT STORAGE -->
+  <div id="tab-sharepoint" class="tab-content">
+    <div class="table-panel">
+      <div style="padding: 1.5rem; border-bottom: 1px solid var(--border-color); border-left: 3px solid var(--alaska-green); background: #fafafa;">
+        <h3 style="margin: 0 0 0.4rem; font-size: 0.95rem; text-transform: uppercase; color: var(--alaska-charcoal);">SharePoint Storage Footprint (4,363.89 GB Total)</h3>
+        <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+          Alaska's base included tenant quota covers ~2,364 GB. Alaska currently purchases <strong>$800.00/month ($9,600/yr)</strong> for 2,000 GB in extra file storage. 
+          <strong>92% of company data is concentrated in just 4 sites</strong>, including 790 GB in closed archive sites sitting on expensive active storage ($0.40/GB/mo).
+        </p>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Site Name</th>
+            <th>Storage Used</th>
+            <th>File Count</th>
+            <th>% of Tenant</th>
+            <th>Monthly Billed Cost</th>
+            <th>Strategic Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td><strong>Tenders</strong></td>
+            <td>2,027.53 GB</td>
+            <td>530,731</td>
+            <td>46.5%</td>
+            <td>$811.01 / mo</td>
+            <td>Apply automated 30-version retention limit (reclaims ~500–700 GB intermediate PDF drafts).</td>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong>Contracts</strong></td>
+            <td>1,191.27 GB</td>
+            <td>577,771</td>
+            <td>27.3%</td>
+            <td>$476.51 / mo</td>
+            <td>Apply version trimming; target completed project subfolders for cold archive.</td>
+          </tr>
+          <tr class="danger-row">
+            <td><strong>Archive Contracts</strong></td>
+            <td>530.28 GB</td>
+            <td>537,350</td>
+            <td>12.2%</td>
+            <td>$212.11 / mo</td>
+            <td><strong>MOVE TO M365 COLD ARCHIVE:</strong> Inactive closed contracts. Drops cost to $0.05/GB ($26.50/mo).</td>
+          </tr>
+          <tr class="danger-row">
+            <td><strong>Archive Tenders</strong></td>
+            <td>259.82 GB</td>
+            <td>239,341</td>
+            <td>6.0%</td>
+            <td>$103.93 / mo</td>
+            <td><strong>MOVE TO M365 COLD ARCHIVE:</strong> Inactive closed tenders. Drops cost to $0.05/GB ($13.00/mo).</td>
+          </tr>
+          <tr>
+            <td><strong>Project Images & Media</strong></td>
+            <td>183.89 GB</td>
+            <td>13,514</td>
+            <td>4.2%</td>
+            <td>$73.56 / mo</td>
+            <td>Heavy media library. Offload drone/site videos to Azure Cold Blob to bypass SharePoint quotas.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB 4: PRINTABLE PM SURVEY -->
+  <div id="tab-survey" class="tab-content">
+    <div class="table-panel" style="background: transparent; border: none;">
+      <div class="print-header">
+        <h1 style="color: var(--alaska-charcoal); text-transform: uppercase; margin-bottom: 0.2rem;">Alaska Construction & Interiors</h1>
+        <h2 style="color: var(--alaska-green); margin-top: 0;">Software Rationalization Audit Form</h2>
+        <hr style="border: 1px solid var(--border-color); margin-bottom: 2rem;">
+      </div>
+      
+      <div style="background: var(--bg-white); padding: 2rem; border-radius: 4px; border: 1px solid var(--border-color);">
+        <h3 style="margin-top: 0; text-transform: uppercase; color: var(--alaska-charcoal);">Project Manager Licensing Rationalization Checklist</h3>
+        <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.5;">
+          Alaska currently subscribes to <strong>53 seats of Microsoft Planner and Project Plan 3</strong> ($48.50/user/mo). Microsoft Planner (included free in standard Business licensing) allows users to view Gantt charts, update tasks, and check off punch lists. Project Plan 3 is only required for staff who actively <strong>build and structure new critical-path schedules from scratch</strong>.<br><br>
+          <em>Instructions: Please review the required toolsets for your Project and Site Management staff. Check the boxes that apply.</em>
+        </p>
+
+        <div class="survey-card">
+          <h4 style="margin-top: 0; color: var(--alaska-green); font-size: 1.1rem; margin-bottom: 1.25rem;">1. Microsoft Project vs. Planner</h4>
+          <div class="survey-question">
+            <input type="checkbox" id="q1">
+            <label for="q1">This user <strong>creates and modifies</strong> complex critical-path Gantt schedules from scratch. <em>(Requires Project Plan 3)</em></label>
+          </div>
+          <div class="survey-question">
+            <input type="checkbox" id="q2">
+            <label for="q2">This user only needs to <strong>view</strong> existing schedules and update task percentages/status. <em>(Can be downgraded to standard Planner)</em></label>
+          </div>
+        </div>
+
+        <div class="survey-card">
+          <h4 style="margin-top: 0; color: var(--alaska-green); font-size: 1.1rem; margin-bottom: 1.25rem;">2. Bluebeam Revu vs. Adobe Acrobat</h4>
+          <div class="survey-question">
+            <input type="checkbox" id="q3">
+            <label for="q3">This user actively <strong>measures quantities, scales CAD drawings, and overlays architectural revisions</strong>. <em>(Requires Bluebeam Revu Core)</em></label>
+          </div>
+          <div class="survey-question">
+            <input type="checkbox" id="q4">
+            <label for="q4">This user is field/site-based and only needs to <strong>view plans or participate in active markup sessions</strong> on a tablet. <em>(Can use Free Bluebeam Studio Viewer)</em></label>
+          </div>
+          <div class="survey-question">
+            <input type="checkbox" id="q5">
+            <label for="q5">This user specifically requires <strong>Adobe InDesign</strong> for bid submissions and marketing collateral. <em>(Retain on Adobe Annual Contract)</em></label>
+          </div>
+        </div>
+        
+        <div style="margin-top: 4rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem; display: flex; justify-content: space-between; font-size: 1rem; color: var(--text-muted);">
+          <div><strong>Reviewed By:</strong> ____________________________________</div>
+          <div><strong>Date:</strong> ___________________________</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tab Navigation Logic
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+
+    // CSV Parsing and User Diagnostic Logic
+    let usersMap = {};
+    let directoryArray = [];
+    
+    function parseCSV(text) {
+      const rows = text.split(/\r?\n/);
+      let headerRowIdx = 0;
+      for(let i=0; i<rows.length; i++) {
+          if(rows[i].includes("User Principal Name") || rows[i].includes("UserPrincipalName")) {
+              headerRowIdx = i; break;
+          }
+      }
+      const headers = rows[headerRowIdx].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(h => h.replace(/^"|"$/g, '').trim());
+      const data = [];
+      for(let i=headerRowIdx+1; i<rows.length; i++) {
+          if(!rows[i].trim()) continue;
+          const cols = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
+          let rowData = {};
+          headers.forEach((h, j) => rowData[h] = cols[j] || '');
+          data.push(rowData);
+      }
+      return data;
+    }
+
+    document.getElementById('csvFileInput').addEventListener('change', function(e) {
+      const files = Array.from(e.target.files);
+      if (files.length === 0) return;
+      
+      let readers = [];
+      files.forEach(file => {
+        let reader = new FileReader();
+        let promise = new Promise(resolve => {
+          reader.onload = (event) => resolve({ name: file.name, content: event.target.result });
+        });
+        reader.readAsText(file);
+        readers.push(promise);
+      });
+
+      Promise.all(readers).then(results => {
+        results.forEach(res => {
+          const data = parseCSV(res.content);
+          
+          if (res.name.toLowerCase().includes("mailbox") || (data[0] && data[0]["Storage Used (Byte)"] !== undefined)) {
+            data.forEach(row => {
+              let upn = (row["User Principal Name"] || "").toLowerCase();
+              if(!upn) return;
+              if(!usersMap[upn]) usersMap[upn] = { upn, name: row["Display Name"], role: 'User / Shared', mailbox_gb: 0, archive_gb: 0, licenses: [], archive_status: 'Disabled' };
+              let bytes = parseInt(row["Storage Used (Byte)"]) || 0;
+              usersMap[upn].mailbox_gb = bytes / (1024 * 1024 * 1024);
+              if (row["Has Archive"] === "True") usersMap[upn].archive_status = "Active";
+            });
+          }
+          else if (res.name.toLowerCase().includes("archive")) {
+            data.forEach(row => {
+              let upn = (row["User Principal Name"] || "").toLowerCase();
+              if(upn && usersMap[upn]) usersMap[upn].archive_gb = parseFloat(row["Archive Size (GB)"]) || parseFloat(row["Archive Size"]) || 0;
+            });
+          }
+          else if (res.name.toLowerCase().includes("plan_2")) {
+            data.forEach(row => {
+              let upn = (row["User principal name"] || row["User Principal Name"] || "").toLowerCase();
+              if(upn && usersMap[upn]) usersMap[upn].licenses.push("Exchange Online (Plan 2)");
+            });
+          }
+          else if (res.name.toLowerCase().includes("directory") || (data[0] && (data[0]["Title"] !== undefined || data[0]["JobTitle"] !== undefined))) {
+            data.forEach(row => {
+              let upn = (row["UserPrincipalName"] || row["User Principal Name"] || "").toLowerCase();
+              if(upn && usersMap[upn]) usersMap[upn].role = row["Title"] || row["JobTitle"] || 'User';
+            });
+          }
+        });
+
+        directoryArray = Object.values(usersMap).map(u => {
+          u.total_gb = u.mailbox_gb + u.archive_gb;
+          u.quota_gb = u.licenses.includes("Exchange Online (Plan 2)") ? 150 : 50; 
+          return u;
+        });
+
+        directoryArray.sort((a, b) => b.total_gb - a.total_gb);
+
+        document.getElementById('uploadContainer').style.display = 'none';
+        document.getElementById('dashboardContainer').style.display = 'block';
+        
+        document.getElementById('kpiTotalUsers').innerText = directoryArray.length;
+        document.getElementById('kpiTotalStorage').innerText = directoryArray.reduce((sum, u) => sum + u.total_gb, 0).toFixed(1) + " GB";
+        document.getElementById('kpiPlan2').innerText = directoryArray.filter(u => u.licenses.includes("Exchange Online (Plan 2)")).length;
+
+        renderList();
+        if(directoryArray.length > 0) showUser(directoryArray[0]);
+      });
+    });
+
+    const listEl = document.getElementById('list');
+    const detailsEl = document.getElementById('details');
+    const filterEl = document.getElementById('filter');
+
+    function renderList() {
+      let term = filterEl.value.toLowerCase();
+      listEl.innerHTML = '';
+      const matched = directoryArray.filter(u => u.name.toLowerCase().includes(term) || u.upn.includes(term));
+      
+      matched.forEach(user => {
+        let tag = "tag-success", status = "Healthy";
+        if (user.total_gb > user.quota_gb * 0.9) { tag = "tag-danger"; status = "Critical Full"; }
+        else if (user.licenses.includes("Exchange Online (Plan 2)") && user.total_gb < 48) { tag = "tag-warning"; status = "Review License"; }
+        else if (user.archive_status === "Active" && user.total_gb < 45) { tag = "tag-info"; status = "Review Add-on"; }
+
+        const item = document.createElement('div');
+        item.className = 'user-item';
+        item.innerHTML = `
+          <div>
+            <div class="user-title">${user.name}</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">${user.upn} &bull; Total: ${user.total_gb.toFixed(1)} GB</div>
+          </div>
+          <span class="status-tag ${tag}">${status}</span>
+        `;
+        item.onclick = () => { document.querySelectorAll('.user-item').forEach(i => i.classList.remove('active')); item.classList.add('active'); showUser(user); };
+        listEl.appendChild(item);
+      });
+    }
+
+    function showUser(user) {
+      let pct = Math.round((user.mailbox_gb / user.quota_gb) * 100);
+      let actionText = "User storage and licensing appear balanced and correct.";
+      let panelClass = "";
+
+      if (user.total_gb > user.quota_gb * 0.9) {
+        actionText = `URGENT: Mailbox is critically full. Enable auto-archiving or evaluate licensing immediately.`; panelClass = "danger";
+      } else if (user.licenses.includes("Exchange Online (Plan 2)") && user.total_gb < 48) {
+        actionText = `CLEANUP CANDIDATE: User has an expensive Plan 2 license but only ${user.total_gb.toFixed(1)} GB of total data. Standard Business licensing covers 50 GB. Consider dropping Plan 2 to save $11.29/month.`; panelClass = "warning";
+      } else if (user.archive_status === "Active" && user.total_gb < 45) {
+        actionText = `REDUNDANT ARCHIVE ADD-ON: Combined data is only ${user.total_gb.toFixed(1)} GB. Standard licensing covers 50 GB. Remove the Archive Add-on to save money.`; panelClass = "warning";
+      } else if (user.licenses.includes("Exchange Online (Plan 2)") && user.total_gb > 50) {
+        actionText = `VALID PLAN 2: User is consuming ${user.total_gb.toFixed(1)} GB, justifying the 150GB Plan 2 license.`;
+      }
+
+      detailsEl.innerHTML = `
+        <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.25rem;">
+          <h2 style="margin: 0 0 0.25rem 0;">${user.name}</h2>
+          <div style="color: var(--text-muted); font-size: 0.85rem;">${user.role} &bull; ${user.upn}</div>
+        </div>
+        <div class="metric-grid">
+          <div class="metric-box">
+            <div class="metric-name">Primary Mailbox Data</div>
+            <div class="metric-val">${user.mailbox_gb.toFixed(2)} GB</div>
+            <div style="height: 6px; background:#e5e7eb; border-radius:3px; margin-top:5px; overflow:hidden;">
+              <div style="width:${Math.min(pct,100)}%; height:100%; background:var(--alaska-green);"></div>
+            </div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-name">Online Archive Data</div>
+            <div class="metric-val" style="color:var(--alaska-green);">${user.archive_gb.toFixed(2)} GB</div>
+            <div style="font-size: 0.7rem; color:var(--text-muted); margin-top:5px;">Archive State: <strong>${user.archive_status}</strong></div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-name">Total Data Footprint</div>
+            <div class="metric-val">${user.total_gb.toFixed(2)} GB</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-name">Assigned Quota</div>
+            <div class="metric-val">${user.quota_gb} GB</div>
+          </div>
+        </div>
+        <div class="recommendation-panel ${panelClass}">
+          <h4>Diagnostic Recommendation</h4>
+          <p style="margin: 0; font-size: 0.85rem; line-height: 1.4;">${actionText}</p>
+        </div>
+      `;
+    }
+
+    document.getElementById('filter').addEventListener('input', renderList);
+  </script>
+</body>
+</html>

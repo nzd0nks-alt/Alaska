@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alaska Construction & Interiors — IT Cloud & Licensing Review</title>
+  <style>
+    :root {
+      --alaska-green: #1f3a34;
+      --alaska-green-dark: #142723;
+      --alaska-green-light: #f2f7f5;
+      --alaska-charcoal: #1a1a1a;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --bg-white: #ffffff;
+      --border-color: #e5e7eb;
+      --border-dark: #111827;
+      --success: #15803d;
+      --danger: #b91c1c;
+      --warning: #b45309;
+      --info: #1d4ed8;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; background: var(--bg-white); color: var(--text-main); }
+    header { background: var(--bg-white); padding: 1.4rem 2.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-dark); }
+    .brand-wrap { display: flex; align-items: center; gap: 1.25rem; }
+    .brand-logo-svg { width: 40px; height: 46px; }
+    .brand-text h1 { margin: 0; font-size: 1.3rem; letter-spacing: 2.5px; font-weight: 800; text-transform: uppercase; color: var(--alaska-charcoal); }
+    .brand-text span { font-size: 0.78rem; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-top: 3px; font-weight: 600; }
+    .tenant-badge { text-align: right; font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
+    .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; padding: 1.5rem 2.5rem 0.5rem; }
+    .kpi-card { background: var(--bg-white); padding: 1.25rem 1.5rem; border: 1px solid var(--border-color); border-top: 3px solid var(--border-dark); }
+    .kpi-card.highlight { border-top-color: var(--alaska-green); }
+    .kpi-label { font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+    .kpi-val { font-size: 1.7rem; font-weight: 800; color: var(--alaska-charcoal); margin: 0.35rem 0 0.2rem; }
+    .kpi-sub { font-size: 0.8rem; color: var(--alaska-green); font-weight: 600; }
+    .nav-tabs { display: flex; gap: 0.5rem; padding: 1rem 2.5rem 0; border-bottom: 1px solid var(--border-color); }
+    .tab-btn { background: transparent; border: 1px solid transparent; padding: 0.75rem 1.5rem; font-size: 0.85rem; font-weight: 700; cursor: pointer; color: var(--text-muted); }
+    .tab-btn.active { color: var(--alaska-green); border-color: var(--border-color); border-top: 3px solid var(--alaska-green); border-bottom: 1px solid var(--bg-white); margin-bottom: -1px; }
+    .tab-content { display: none; padding: 1.5rem 2.5rem; }
+    .tab-content.active { display: block; }
+    .main-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.75rem; }
+    .card-panel { border: 1px solid var(--border-color); display: flex; flex-direction: column; height: 680px; }
+    .panel-header { padding: 0.85rem 1.25rem; background: #fafafa; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+    .panel-header h3 { margin: 0; font-size: 0.85rem; text-transform: uppercase; font-weight: 800; }
+    .upload-btn { background: var(--alaska-green); color: #fff; border: none; padding: 0.45rem 0.85rem; border-radius: 2px; font-size: 0.75rem; font-weight: 600; cursor: pointer; }
+    .search-box { padding: 0.4rem 0.75rem; border: 1px solid var(--border-color); width: 180px; }
+    .user-list { overflow-y: auto; flex: 1; }
+    .user-item { padding: 0.85rem 1.25rem; border-bottom: 1px solid var(--border-color); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .user-item:hover { background: #f9fafb; }
+    .user-item.active { background: var(--alaska-green-light); border-left: 4px solid var(--alaska-green); }
+    .user-title { font-weight: 700; font-size: 0.92rem; }
+    .user-subtitle { font-size: 0.78rem; color: var(--text-muted); }
+    .status-tag { font-size: 0.68rem; font-weight: 700; padding: 0.25rem 0.55rem; border-radius: 2px; text-transform: uppercase; }
+    .tag-danger { background: #fee2e2; color: var(--danger); }
+    .tag-warning { background: #fef3c7; color: var(--warning); }
+    .tag-success { background: #dcfce7; color: var(--success); }
+    .tag-info { background: #dbeafe; color: var(--info); }
+    .detail-body { padding: 1.5rem; overflow-y: auto; flex: 1; }
+    .metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; margin-bottom: 1.25rem; }
+    .metric-box { background: #fafafa; border: 1px solid var(--border-color); padding: 0.75rem 0.9rem; }
+    .metric-name { font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+    .metric-val { font-size: 1.15rem; font-weight: 800; margin-top: 0.2rem; }
+    .bar-bg { height: 7px; background: #e5e7eb; border-radius: 2px; overflow: hidden; margin-top: 0.45rem; }
+    .bar-fill { height: 100%; background: var(--alaska-green); transition: width 0.3s; }
+    .recommendation-panel { margin-top: 1.25rem; border-left: 3px solid var(--alaska-green); background: var(--alaska-green-light); padding: 1.15rem; }
+    .recommendation-panel.danger { border-left-color: var(--danger); background: #fef2f2; }
+    .recommendation-panel.warning { border-left-color: var(--warning); background: #fffbeb; }
+    .recommendation-panel h4 { margin: 0 0 0.3rem; font-size: 0.82rem; text-transform: uppercase; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 1rem; }
+    .data-table th { background: var(--alaska-charcoal); color: #fff; text-align: left; padding: 0.75rem; text-transform: uppercase; font-size: 0.75rem; }
+    .data-table td { padding: 0.85rem; border-bottom: 1px solid var(--border-color); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-wrap">
+      <svg class="brand-logo-svg" viewBox="0 0 100 110">
+        <polygon points="50,4 98,104 78,104 50,42 22,104 2,104" fill="#1f3a34" />
+        <polygon points="50,48 78,104 50,90 22,104" fill="#ffffff" />
+      </svg>
+      <div class="brand-text">
+        <h1>Alaska</h1>
+        <span>Technology &amp; Cloud Licensing Review</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="kpi-row">
+    <div class="kpi-card highlight">
+      <div class="kpi-label">Immediate Mailbox Savings</div>
+      <div class="kpi-val">$961 / yr</div>
+      <div class="kpi-sub">Double-licenses &amp; unneeded add-ons</div>
+    </div>
+    <div class="kpi-card highlight">
+      <div class="kpi-label">SharePoint Storage Reduction</div>
+      <div class="kpi-val">$8,100 / yr</div>
+      <div class="kpi-sub">Eliminates 2,000GB add-on fee</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Adobe Upfront Transition</div>
+      <div class="kpi-val">$9,908 / yr</div>
+      <div class="kpi-sub">Eliminates wholesale liability</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Project Plan 3 Rightsizing</div>
+      <div class="kpi-val">$5,814 / yr</div>
+      <div class="kpi-sub">Downgrading non-schedulers</div>
+    </div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('users')">Mailbox Diagnostics &amp; Storage Logic</button>
+    <button class="tab-btn" onclick="switchTab('commercial')">Consolidated Commercial Strategy</button>
+  </div>
+
+  <!-- TAB 1: USERS -->
+  <div id="tab-users" class="tab-content active">
+    <div class="main-grid">
+      <div class="card-panel">
+        <div class="panel-header">
+          <h3>Staff Directory (<span id="count"></span>)</h3>
+          <div style="display: flex; gap: 10px;">
+            <input type="file" id="csvFileInput" accept=".csv" style="display: none;">
+            <button class="upload-btn" onclick="document.getElementById('csvFileInput').click()">+ Upload Archive CSV</button>
+            <input type="text" id="filter" class="search-box" placeholder="Search...">
+          </div>
+        </div>
+        <div class="user-list" id="list"></div>
+      </div>
+      <div class="card-panel">
+        <div class="panel-header"><h3>License &amp; Storage Logic Inspector</h3></div>
+        <div class="detail-body" id="details">
+          <div style="text-align: center; color: var(--text-muted); margin-top: 200px;">Select a staff member.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: COMMERCIAL -->
+  <div id="tab-commercial" class="tab-content">
+    <div class="card-panel" style="padding: 1.5rem; height: auto;">
+      <h3 style="margin-top: 0; text-transform: uppercase;">Consolidated Annual Value Blueprint</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Workstream / Area</th><th>Current Baseline</th><th>Proposed Target State</th><th>Net Annual Savings</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SharePoint Storage</strong></td>
+            <td>$800.00 / mo ($9,600/yr) add-on</td>
+            <td>M365 Cold Archive for 790 GB archives + version trimming</td>
+            <td style="color: var(--success); font-weight: 800;">$8,100.00 / yr</td>
+          </tr>
+          <tr>
+            <td><strong>Adobe VIPMP Transition</strong></td>
+            <td>Monthly flexible invoices across 86 licenses</td>
+            <td>Annual commitment billing; eliminates $27k reseller liability</td>
+            <td style="color: var(--success); font-weight: 800;">$9,908.84 / yr</td>
+          </tr>
+          <tr>
+            <td><strong>Project Plan 3 Rightsizing</strong></td>
+            <td>53 users licensed @ $48.50/mo</td>
+            <td>Trim ~15 non-schedulers down to included Planner</td>
+            <td style="color: var(--success); font-weight: 800;">$5,814.00 / yr</td>
+          </tr>
+          <tr>
+            <td><strong>Mailbox Licensing Cleanup</strong></td>
+            <td>Duplicate E3+Plan 2 licenses &amp; shared mailboxes</td>
+            <td>Remove duplicate Plan 2 and unlicense shared <50 GB</td>
+            <td style="color: var(--success); font-weight: 800;">$961.08 / yr</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    let directory = [
+      { name: "Robert Stretton", email: "robert.stretton@alaska.co.nz", role: "Project Lead", mailbox_gb: 42.16, archive_gb: 0, quota_gb: 100, licenses: ["Office 365 E3", "Exchange Online (Plan 2)"] },
+      { name: "Stephen Thomas", email: "stephen.thomas@alaska.co.nz", role: "Managing Director", mailbox_gb: 11.51, archive_gb: 0, quota_gb: 50, licenses: ["M365 Business Standard", "Exchange Online Archiving"] },
+      { name: "Brian Hutton", email: "brian.hutton@alaska.co.nz", role: "Managing Director", mailbox_gb: 17.51, archive_gb: 0, quota_gb: 50, licenses: ["M365 Business Standard", "Exchange Online Archiving"] },
+      { name: "Jacques Terblanche", email: "jacques.terblanche@alaska.co.nz", role: "Project Manager", mailbox_gb: 49.12, archive_gb: 34.2, quota_gb: 50, licenses: ["M365 Business Standard", "Exchange Online Archiving"] },
+      { name: "Nigel Silvester", email: "nigel.silvester@alaska.co.nz", role: "Quantity Surveyor", mailbox_gb: 60.90, archive_gb: 41.5, quota_gb: 100, licenses: ["M365 Business Standard", "Exchange Online Archiving"] },
+      { name: "Kevin Hawthorn", email: "kevin.hawthorn@alaska.co.nz", role: "Project Manager", mailbox_gb: 50.57, archive_gb: 0, quota_gb: 150, licenses: ["M365 Business Standard", "Exchange Online (Plan 2)"] },
+      { name: "Simon Sheldon", email: "simon.sheldon@alaska.co.nz", role: "Dormant Shared", mailbox_gb: 1.02, archive_gb: 0, quota_gb: 100, licenses: ["Exchange Online (Plan 2)"] },
+      { name: "Rhys Hodgkinson", email: "rhys.hodgkinson@alaska.co.nz", role: "Project Manager", mailbox_gb: 97.57, archive_gb: 0, quota_gb: 100, licenses: ["M365 Business Standard"] }
+    ];
+
+    const listEl = document.getElementById('list');
+    const detailsEl = document.getElementById('details');
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+
+    function render(term = '') {
+      listEl.innerHTML = '';
+      const matched = directory.filter(u => u.name.toLowerCase().includes(term.toLowerCase()));
+      document.getElementById('count').textContent = matched.length;
+
+      matched.forEach(user => {
+        let totalStorage = user.mailbox_gb + user.archive_gb;
+        let tag = "tag-success", status = "Healthy";
+        
+        if (totalStorage > user.quota_gb * 0.9) { tag = "tag-danger"; status = "Critical Quota"; }
+        else if (user.licenses.includes("Office 365 E3") && user.licenses.includes("Exchange Online (Plan 2)")) { tag = "tag-danger"; status = "Double-Licensed"; }
+        else if (totalStorage < 45 && user.licenses.includes("Exchange Online Archiving")) { tag = "tag-warning"; status = "Unused Add-on"; }
+        else if (totalStorage > 50 && user.licenses.includes("Exchange Online Archiving")) { tag = "tag-info"; status = "Valid Archive"; }
+
+        const item = document.createElement('div');
+        item.className = 'user-item';
+        item.innerHTML = `<div><div class="user-title">${user.name}</div><div class="user-subtitle">Total Data: ${totalStorage.toFixed(1)} GB</div></div><span class="status-tag ${tag}">${status}</span>`;
+        item.onclick = () => { document.querySelectorAll('.user-item').forEach(i => i.classList.remove('active')); item.classList.add('active'); showUser(user); };
+        listEl.appendChild(item);
+      });
+    }
+
+    function showUser(user) {
+      let totalStorage = user.mailbox_gb + user.archive_gb;
+      let pct = Math.round((user.mailbox_gb / user.quota_gb) * 100);
+      let actionText = "Standard active configuration. Storage is within limits.";
+      let panelClass = "";
+
+      // DYNAMIC LICENSING LOGIC
+      if (user.licenses.includes("Office 365 E3") && user.licenses.includes("Exchange Online (Plan 2)")) {
+        actionText = "REMOVE Plan 2 immediately. User holds Office 365 E3 which ALREADY includes a 100 GB Exchange Plan 2 mailbox. Removing this duplicate standalone license saves $11.29/month.";
+        panelClass = "danger";
+      } else if (user.role.includes("Shared") && totalStorage < 50) {
+        actionText = "REMOVE LICENSE. Shared mailboxes under 50 GB require NO paid license. Converting to free tier saves $11.29/month.";
+        panelClass = "danger";
+      } else if (totalStorage < 45 && user.licenses.includes("Exchange Online Archiving")) {
+        actionText = "REMOVE Archiving Add-on ($7.88/month). Combined primary and archive storage is only " + totalStorage.toFixed(1) + " GB. Standard 50GB tier covers this. Removing this saves $94.56/year.";
+        panelClass = "warning";
+      } else if (totalStorage < 48 && user.licenses.includes("Exchange Online (Plan 2)") && !user.licenses.includes("Office 365 E3")) {
+        actionText = "TARGET FOR CLEANUP. Total storage is " + totalStorage.toFixed(1) + " GB. Clean up 1-2 GB and drop Plan 2 to save $11.29/month.";
+        panelClass = "warning";
+      } else if (totalStorage > 50 && user.licenses.includes("Exchange Online Archiving")) {
+        actionText = "Valid configuration. Total storage exceeds 50 GB. Archiving add-on is mandatory and actively preventing mailbox lockouts.";
+      } else if (totalStorage > 50 && user.licenses.includes("Exchange Online (Plan 2)") && !user.licenses.includes("Office 365 E3")) {
+        actionText = "Legitimate >50GB mailbox. Consider replacing Plan 2 ($11.29) with Exchange Archiving ($7.88) to save $3.41/mo.";
+      } else if (totalStorage > user.quota_gb * 0.9) {
+        actionText = "URGENT: Mailbox is " + pct + "% full. Must enable auto-archiving to avoid send/receive lockout.";
+        panelClass = "danger";
+      }
+
+      detailsEl.innerHTML = `
+        <h2 style="margin:0;">${user.name}</h2>
+        <p style="color:var(--text-muted); margin-bottom:1rem;">${user.role} &bull; ${user.email}</p>
+        <div class="metric-grid">
+          <div class="metric-box">
+            <div class="metric-name">Primary Storage Used</div>
+            <div class="metric-val">${user.mailbox_gb.toFixed(2)} GB</div>
+            <div class="bar-bg"><div class="bar-fill" style="width:${Math.min(pct, 100)}%;"></div></div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-name">Online Archive Storage</div>
+            <div class="metric-val" style="color:var(--alaska-green);">${user.archive_gb.toFixed(2)} GB</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-name">Combined Total Storage</div>
+            <div class="metric-val">${totalStorage.toFixed(2)} GB</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-name">Licenses Assigned</div>
+            <div style="font-size: 0.75rem; font-weight: 600; margin-top: 5px;">${user.licenses.join('<br>')}</div>
+          </div>
+        </div>
+        <div class="recommendation-panel ${panelClass}">
+          <h4>Diagnostic Recommendation</h4>
+          <p>${actionText}</p>
+        </div>
+      `;
+    }
+
+    // CSV UPLOAD & MERGE LOGIC
+    document.getElementById('csvFileInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const rows = event.target.result.split('\n');
+        for (let i = 1; i < rows.length; i++) {
+          const cols = rows[i].split(',');
+          if (cols.length > 2) {
+            const email = cols[1].replace(/"/g, '').trim().toLowerCase();
+            const archSize = parseFloat(cols[2].replace(/"/g, '').trim()) || parseFloat(cols[5].replace(/"/g, '').trim()) || 0;
+            const idx = directory.findIndex(u => u.email.toLowerCase() === email);
+            if (idx !== -1) directory[idx].archive_gb = archSize;
+          }
+        }
+        alert("Archive storage data successfully imported. Recommendations recalculated.");
+        render(document.getElementById('filter').value);
+        if(document.querySelector('.user-item.active')) document.querySelector('.user-item.active').click();
+      };
+      reader.readAsText(file);
+    });
+
+    document.getElementById('filter').addEventListener('input', e => render(e.target.value));
+    render();
+    if (directory.length) { document.querySelector('.user-item').classList.add('active'); showUser(directory[0]); }
+  </script>
+</body>
+</html>
