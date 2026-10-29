@@ -361,14 +361,16 @@ def generate_master_msp_portal(all_tenants_summary, output_file):
 """
     for t in all_tenants_summary:
         t_id = t["id"]
+        status = t.get("status", "Audited & Active")
+        is_audited = t.get("has_dashboard", True) and t.get("mailbox_tb", "—") != "—"
+        badge = '<span class="inline-flex items-center px-2 py-0.5 rounded text-2xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1 animate-pulse"></span> Audited</span>' if is_audited else '<span class="inline-flex items-center px-2 py-0.5 rounded text-2xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">Pending Audit</span>'
+
         html += f"""      <div class="bg-theme-card border border-theme rounded-2xl p-6 shadow-sm hover:border-theme-brand transition space-y-4">
         <div class="flex justify-between items-start">
           <div class="h-10 w-10 rounded-xl bg-theme-kpi flex items-center justify-center text-theme-brand font-bold text-lg">
             <i class="fa-solid fa-building"></i>
           </div>
-          <span class="inline-flex items-center px-2 py-0.5 rounded text-2xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1 animate-pulse"></span> Connected
-          </span>
+          {badge}
         </div>
         <div>
           <h3 class="text-base font-bold text-theme-main">{t['displayName']}</h3>
@@ -377,11 +379,11 @@ def generate_master_msp_portal(all_tenants_summary, output_file):
         <div class="grid grid-cols-2 gap-3 pt-2 text-xs border-t border-subtle">
           <div class="p-2.5 rounded-lg bg-theme-header border border-theme">
             <div class="text-2xs text-theme-muted uppercase font-bold">Mailbox Storage</div>
-            <div class="text-sm font-extrabold text-theme-main mt-0.5">{t.get('mailbox_tb', '2.95')} TB</div>
+            <div class="text-sm font-extrabold text-theme-main mt-0.5">{t.get('mailbox_tb', '—')}</div>
           </div>
           <div class="p-2.5 rounded-lg bg-theme-header border border-theme">
             <div class="text-2xs text-theme-muted uppercase font-bold">SharePoint Storage</div>
-            <div class="text-sm font-extrabold text-theme-main mt-0.5">{t.get('sharepoint_tb', '4.48')} TB</div>
+            <div class="text-sm font-extrabold text-theme-main mt-0.5">{t.get('sharepoint_tb', '—')}</div>
           </div>
         </div>
         <div class="grid grid-cols-2 gap-2 pt-2">
@@ -407,3 +409,4 @@ def generate_master_msp_portal(all_tenants_summary, output_file):
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"[+] Master MSP portal generated: {output_file}")
+

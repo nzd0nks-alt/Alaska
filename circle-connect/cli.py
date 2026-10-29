@@ -5,6 +5,7 @@ Orchestrates multi-tenant audits, client onboarding, admin consent URLs, and Net
 """
 
 import sys
+import glob
 import argparse
 import json
 from datetime import datetime
@@ -18,6 +19,55 @@ from core.consent_generator import generate_consent_url
 from tasks.task_exchange_report import run_exchange_audit
 from tasks.task_sharepoint_report import run_sharepoint_audit
 from tasks.task_dashboard import generate_tenant_dashboard, generate_master_msp_portal
+
+def get_tenant_latest_stats(tenant_id):
+    """Retrieve the latest storage metrics from saved reports if available."""
+    reports_dir = BASE_DIR / "reports"
+    ex_files = sorted(glob.glob(str(reports_dir / f"{tenant_id}_exchange_*.json")), reverse=True)
+    sp_files = sorted(glob.glob(str(reports_dir / f"{tenant_id}_sharepoint_*.json")), reverse=True)
+    
+    mb_tb = "—"
+    sp_tb = "—"
+    status = "Pending Initial Audit"
+
+    if ex_files and sp_files:
+        try:
+            with open(ex_files[0], "r", encoding="utf-8") as f:
+                ex_data = json.load(f)
+                mb_tb = f"{ex_data['summary']['total_storage_tb']} TB"
+            with open(sp_files[0], "r", encoding="utf-8") as f:
+                sp_data = json.load(f)
+                sp_tb = f"{sp_data['summary']['total_storage_tb']} TB"
+            status = "Audited & Active"
+        except Exception:
+            pass
+
+    return mb_tb, sp_tb, status
+
+def compile_all_tenant_summaries(mgr, fresh_results=None):
+    """Compile summary metrics for all registered tenants for the Master Portal."""
+    fresh_map = {r["id"]: r for r in (fresh_results or [])}
+    summaries = []
+
+    for tid, t in mgr.tenants.items():
+        if tid in fresh_map:
+            summaries.append(fresh_map[tid])
+        else:
+            mb_tb, sp_tb, status = get_tenant_latest_stats(tid)
+            has_dash = (BASE_DIR / "web" / "tenants" / tid / "dashboard.html").exists()
+            has_prop = (BASE_DIR / "web" / "tenants" / tid / "proposal.html").exists()
+            summaries.append({
+                "id": tid,
+                "displayName": t.get("displayName", tid),
+                "primaryDomain": t.get("primaryDomain", ""),
+                "mailbox_tb": mb_tb,
+                "sharepoint_tb": sp_tb,
+                "status": status if has_dash else "Pending Initial Audit",
+                "has_dashboard": has_dash,
+                "has_proposal": has_prop
+            })
+
+    return summaries
 
 def audit_tenant(mgr, tenant_id, period="D30"):
     """Run full audit for a single tenant."""
@@ -53,8 +103,11 @@ def audit_tenant(mgr, tenant_id, period="D30"):
         "id": tenant_id,
         "displayName": t_info.get("displayName", tenant_id),
         "primaryDomain": t_info.get("primaryDomain", ""),
-        "mailbox_tb": ex_res["summary"]["total_storage_tb"],
-        "sharepoint_tb": sp_res["summary"]["total_storage_tb"]
+        "mailbox_tb": f"{ex_res['summary']['total_storage_tb']} TB",
+        "sharepoint_tb": f"{sp_res['summary']['total_storage_tb']} TB",
+        "status": "Audited & Active",
+        "has_dashboard": True,
+        "has_proposal": (web_tenant_dir / "proposal.html").exists()
     }
 
 def main():
@@ -92,9 +145,9 @@ def main():
 
     if args.add_tenant:
         print("\n=== Register New Client Tenant in Circle Connect ===")
-        t_id = input("Tenant Short ID (e.g. acme): ").strip().lower()
-        d_name = input("Display Name (e.g. Acme Corporation): ").strip()
-        domain = input("Primary Domain (e.g. acme.co.nz): ").strip()
+        t_id = input("Tenant Short ID (e.g. 'acme', 'cango', 'vetta'): ").strip().lower()
+        d_name = input("Display Name (e.g. 'Acme Corporation'): ").strip()
+        domain = input("Primary Domain (e.g. 'acme.co.nz'): ").strip()
         azure_id = input("Azure Directory (Tenant) ID GUID: ").strip()
         use_master = input("Use Circle IT Master Multi-Tenant App? (Y/n): ").strip().lower() != "n"
         
@@ -105,38 +158,38 @@ def main():
             c_sec = input("Dedicated Client Secret: ").strip()
 
         mgr.add_tenant(t_id, d_name, domain, azure_id, use_master, c_id, c_sec)
+        
+        # Refresh master portal to show new card
+        portal_file = BASE_DIR / "web" / "index.html"
+        summaries = compile_all_tenant_summaries(mgr)
+        generate_master_msp_portal(summaries, portal_file)
+        print(f"\n[+] Master MSP Portal updated at {portal_file}")
+        print(f"[+] Run: python3 cli.py --audit {t_id} to execute the first audit!")
         return
 
     if args.audit:
         target = args.audit.lower()
-        summaries = []
+        fresh = []
         if target == "all":
             for tid in mgr.tenants.keys():
                 s = audit_tenant(mgr, tid, period=args.period)
-                summaries.append(s)
+                fresh.append(s)
         else:
             s = audit_tenant(mgr, target, period=args.period)
-            summaries.append(s)
+            fresh.append(s)
 
-        # Update Master MSP Portal
+        # Update Master MSP Portal with all tenants (fresh + cached)
         portal_file = BASE_DIR / "web" / "index.html"
-        generate_master_msp_portal(summaries, portal_file)
+        all_summaries = compile_all_tenant_summaries(mgr, fresh_results=fresh)
+        generate_master_msp_portal(all_summaries, portal_file)
         print(f"\n[+] Master MSP Portal updated at {portal_file}")
         return
 
     if args.refresh_portal:
-        summaries = [
-            {
-                "id": t["id"],
-                "displayName": t["displayName"],
-                "primaryDomain": t["primaryDomain"],
-                "mailbox_tb": "2.95",
-                "sharepoint_tb": "4.48"
-            }
-            for t in mgr.list_tenants()
-        ]
         portal_file = BASE_DIR / "web" / "index.html"
-        generate_master_msp_portal(summaries, portal_file)
+        all_summaries = compile_all_tenant_summaries(mgr)
+        generate_master_msp_portal(all_summaries, portal_file)
+        print(f"[+] Master MSP portal refreshed: {portal_file}")
         return
 
     parser.print_help()
