@@ -153,7 +153,14 @@ def main():
         
         c_id = ""
         c_sec = ""
-        if not use_master:
+        if use_master:
+            if not mgr.master_app.get("clientId") or not mgr.master_app.get("clientSecret"):
+                print("\n[!] Circle IT Master Multi-Tenant App credentials are not yet configured.")
+                m_cid = input("Enter Circle IT Master Application (Client) ID: ").strip()
+                m_sec = input("Enter Circle IT Master Client Secret: ").strip()
+                mgr.set_master_app(m_cid, m_sec)
+        else:
+            print("\nNote: For tenants with Intune/Device Compliance requirements (e.g. AADSTS50097), dedicated credentials are used.")
             c_id = input("Dedicated Application (client) ID: ").strip()
             c_sec = input("Dedicated Client Secret: ").strip()
 

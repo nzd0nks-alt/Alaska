@@ -49,6 +49,18 @@ class TenantManager:
             self.master_app["clientId"] = os.getenv("CIRCLE_MSP_CLIENT_ID", "")
             self.master_app["clientSecret"] = os.getenv("CIRCLE_MSP_CLIENT_SECRET", "")
 
+    def set_master_app(self, client_id, client_secret):
+        """Update and persist Master App credentials."""
+        self.master_app["clientId"] = client_id.strip()
+        self.master_app["clientSecret"] = client_secret.strip()
+        data = {
+            "masterApp": self.master_app,
+            "tenants": list(self.tenants.values())
+        }
+        with open(self.config_file, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
+        print(f"[+] Master App credentials successfully updated in {self.config_file}")
+
     def list_tenants(self):
         """Return list of all configured tenants."""
         return [
