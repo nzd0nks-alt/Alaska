@@ -142,3 +142,4 @@ class M365GraphClient:
 
     def list_groups(self):
         return self.request("groups?$select=id,displayName,description,mail&$top=25")
+

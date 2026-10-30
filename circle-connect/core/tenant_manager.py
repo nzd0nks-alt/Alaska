@@ -114,3 +114,4 @@ class TenantManager:
             json.dump(data, f, indent=2)
 
         print(f"[+] Tenant '{display_name}' ({tenant_id}) successfully saved to {self.config_file}")
+

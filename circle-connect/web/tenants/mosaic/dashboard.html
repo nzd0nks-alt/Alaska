@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="circleit" data-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mosaic Business Solutions - M365 Cloud Audit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; transition: background-color 0.25s ease, color 0.25s ease; }
+
+    /* CIRCLE IT THEME (Default) */
+    [data-theme="circleit"][data-mode="dark"] {
+      --bg-page: #001a22;
+      --bg-surface: #003343;
+      --bg-card: #042530;
+      --bg-card-hover: #073847;
+      --bg-header: #00222d;
+      --border-color: #0b4959;
+      --border-subtle: #083c4a;
+      --text-main: #f0fbfc;
+      --text-muted: #7ad5df;
+      --brand-primary: #45b9ca;
+      --brand-btn: #45b9ca;
+      --brand-btn-text: #00222d;
+      --kpi-bg: rgba(69, 185, 202, 0.12);
+      --table-header: #002936;
+      --table-row-hover: rgba(69, 185, 202, 0.08);
+    }
+    [data-theme="circleit"][data-mode="light"] {
+      --bg-page: #f0f9fb;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #eaf8fa;
+      --bg-header: #ffffff;
+      --border-color: #d0edf2;
+      --border-subtle: #e1f4f7;
+      --text-main: #002733;
+      --text-muted: #075566;
+      --brand-primary: #07586a;
+      --brand-btn: #07586a;
+      --brand-btn-text: #ffffff;
+      --kpi-bg: #eaf8fa;
+      --table-header: #e6f6f9;
+      --table-row-hover: #f3fbfc;
+    }
+
+    /* ALASKA THEME */
+    [data-theme="alaska"][data-mode="dark"] {
+      --bg-page: #0e1412;
+      --bg-surface: #15221e;
+      --bg-card: #1b2b26;
+      --bg-card-hover: #223730;
+      --bg-header: #111a17;
+      --border-color: #26423a;
+      --border-subtle: #1e332c;
+      --text-main: #f2f7f5;
+      --text-muted: #93b3a9;
+      --brand-primary: #e85d04;
+      --brand-btn: #e85d04;
+      --brand-btn-text: #ffffff;
+      --kpi-bg: rgba(232, 93, 4, 0.12);
+      --table-header: #182823;
+      --table-row-hover: rgba(232, 93, 4, 0.08);
+    }
+    [data-theme="alaska"][data-mode="light"] {
+      --bg-page: #f8faf9;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f2f7f5;
+      --bg-header: #ffffff;
+      --border-color: #e2e8e5;
+      --border-subtle: #edf2f0;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --brand-primary: #1f3a34;
+      --brand-btn: #1f3a34;
+      --brand-btn-text: #ffffff;
+      --kpi-bg: #f2f7f5;
+      --table-header: #f2f7f5;
+      --table-row-hover: #f9fbfb;
+    }
+
+    body { background-color: var(--bg-page); color: var(--text-main); }
+    .bg-theme-header { background-color: var(--bg-header); }
+    .bg-theme-card { background-color: var(--bg-card); }
+    .border-theme { border-color: var(--border-color); }
+    .border-subtle { border-color: var(--border-subtle); }
+    .text-theme-main { color: var(--text-main); }
+    .text-theme-muted { color: var(--text-muted); }
+    .text-theme-brand { color: var(--brand-primary); }
+    .bg-theme-brand { background-color: var(--brand-btn); color: var(--brand-btn-text); }
+    .bg-theme-kpi { background-color: var(--kpi-bg); }
+    .bg-theme-th { background-color: var(--table-header); }
+    .hover-theme-row:hover { background-color: var(--table-row-hover); }
+</style>
+</head>
+<body class="min-h-screen">
+  <header class="no-print border-b border-theme bg-theme-header sticky top-0 z-50 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <a href="../../index.html" class="h-9 w-9 rounded-lg flex items-center justify-center font-bold shadow-md bg-theme-brand" title="Back to All Tenants">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight text-theme-main">Mosaic Business Solutions</h1>
+          <p class="text-xs text-theme-muted">Tenant: <span class="font-semibold text-theme-brand">mosaicfsi.com</span> &bull; Cloud Audit</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <div class="flex items-center space-x-1.5 bg-theme-card border border-theme rounded-lg px-2.5 py-1 text-xs">
+          <i class="fa-solid fa-palette text-theme-brand text-2xs"></i>
+          <select id="themeSelector" onchange="changeTheme(this.value)" class="bg-transparent text-theme-main font-semibold text-xs outline-none cursor-pointer">
+            <option value="circleit" class="bg-slate-900 text-white">Circle IT (Teal/Cyan)</option>
+            <option value="alaska" class="bg-slate-900 text-white">Alaska (Forest/Orange)</option>
+          </select>
+        </div>
+        <button id="modeToggleBtn" onclick="toggleMode()" class="px-2.5 py-1.5 rounded-lg border border-theme bg-theme-card text-xs font-semibold text-theme-main">
+          <i id="modeIcon" class="fa-solid fa-sun text-amber-400"></i>
+          <span id="modeLabel" class="hidden sm:inline">Light</span>
+        </button>
+        <a href="proposal.html" class="px-3 py-1.5 rounded-lg bg-theme-brand text-xs font-bold shadow-sm">
+          <i class="fa-solid fa-file-contract mr-1.5"></i> Modernization Proposal
+        </a>
+        <button onclick="window.print()" class="px-2.5 py-1.5 rounded-lg border border-theme bg-theme-card text-xs">
+          <i class="fa-solid fa-print"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="bg-theme-card border border-theme rounded-xl p-5 shadow-sm">
+        <span class="text-xs font-semibold uppercase tracking-wider text-theme-muted">Mailbox Storage</span>
+        <div class="mt-3 flex items-baseline justify-between">
+          <div class="text-2xl font-extrabold text-theme-main">0.35 TB</div>
+          <span class="text-xs text-theme-muted">362.84 GB</span>
+        </div>
+        <p class="text-xs text-theme-muted mt-2">
+          <span class="font-bold text-emerald-500">76</span> active &bull; 
+          <span class="font-bold text-amber-500">60</span> inactive (>30d)
+        </p>
+      </div>
+
+      <div class="bg-theme-card border border-theme rounded-xl p-5 shadow-sm">
+        <span class="text-xs font-semibold uppercase tracking-wider text-theme-muted">Quota Risk Mailboxes</span>
+        <div class="mt-3 flex items-baseline justify-between">
+          <div class="text-2xl font-extrabold text-rose-500">0 Users</div>
+          <span class="text-xs text-rose-500 font-bold">0 Over 100%</span>
+        </div>
+        <p class="text-xs text-theme-muted mt-2">Require immediate Archiving expansion</p>
+      </div>
+
+      <div class="bg-theme-card border border-theme rounded-xl p-5 shadow-sm">
+        <span class="text-xs font-semibold uppercase tracking-wider text-theme-muted">SharePoint Storage</span>
+        <div class="mt-3 flex items-baseline justify-between">
+          <div class="text-2xl font-extrabold text-theme-main">0.43 TB</div>
+          <span class="text-xs text-theme-muted">78,983 Files</span>
+        </div>
+        <p class="text-xs text-theme-muted mt-2">Across <span class="font-bold text-theme-main">55</span> sites</p>
+      </div>
+
+      <div class="bg-theme-card border border-theme rounded-xl p-5 shadow-sm">
+        <span class="text-xs font-semibold uppercase tracking-wider text-theme-muted">Est. Storage Savings</span>
+        <div class="mt-3 flex items-baseline justify-between">
+          <div class="text-2xl font-extrabold text-emerald-500">$1,028 NZD</div>
+          <span class="text-xs text-theme-muted">/ year</span>
+        </div>
+        <p class="text-xs text-theme-muted mt-2">By tiering <span class="font-bold text-emerald-500">343 GB</span> cold sites</p>
+      </div>
+    </div>
+
+    <!-- Exchange Breakdown -->
+    <div class="bg-theme-card border border-theme rounded-2xl overflow-hidden shadow-sm">
+      <div class="px-6 py-4 border-b border-theme bg-theme-th flex justify-between items-center">
+        <h2 class="text-base font-bold text-theme-main">Exchange Online Mailbox & Quota Analysis</h2>
+        <span class="text-xs px-2.5 py-1 rounded bg-theme-kpi text-theme-main font-semibold">Total: 136 Mailboxes</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-theme-th text-theme-muted uppercase font-semibold border-b border-theme">
+            <tr>
+              <th class="px-6 py-3.5">User</th>
+              <th class="px-6 py-3.5">Storage</th>
+              <th class="px-6 py-3.5">Quota %</th>
+              <th class="px-6 py-3.5">Archive</th>
+              <th class="px-6 py-3.5">Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y border-subtle">
+            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Jigs Jamnadas</div><div class="text-2xs text-theme-muted">Jigs.Jamnadas@mosaicfsi.com</div></td>
+              <td class="px-6 py-3.5 font-medium">51.71 GB <span class="text-theme-muted text-2xs">/ 99.0 GB</span></td>
+              <td class="px-6 py-3.5"><span class="font-bold">52.2%</span></td>
+              <td class="px-6 py-3.5">No</td>
+              <td class="px-6 py-3.5"><span class="text-theme-muted">Healthy</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Paula Santos</div><div class="text-2xs text-theme-muted">paula.santos@mosaicfsi.com</div></td>
+              <td class="px-6 py-3.5 font-medium">37.25 GB <span class="text-theme-muted text-2xs">/ 99.0 GB</span></td>
+              <td class="px-6 py-3.5"><span class="font-bold">37.6%</span></td>
+              <td class="px-6 py-3.5">No</td>
+              <td class="px-6 py-3.5"><span class="text-theme-muted">Healthy</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Mark Jephson</div><div class="text-2xs text-theme-muted">mark.jephson@mosaicfsi.com</div></td>
+              <td class="px-6 py-3.5 font-medium">21.86 GB <span class="text-theme-muted text-2xs">/ 99.0 GB</span></td>
+              <td class="px-6 py-3.5"><span class="font-bold">22.1%</span></td>
+              <td class="px-6 py-3.5">No</td>
+              <td class="px-6 py-3.5"><span class="text-theme-muted">Healthy</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Tracey Berry</div><div class="text-2xs text-theme-muted">tracey.berry@mosaicfsi.com</div></td>
+              <td class="px-6 py-3.5 font-medium">21.67 GB <span class="text-theme-muted text-2xs">/ 99.0 GB</span></td>
+              <td class="px-6 py-3.5"><span class="font-bold">21.9%</span></td>
+              <td class="px-6 py-3.5">No</td>
+              <td class="px-6 py-3.5"><span class="text-theme-muted">Healthy</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Diane Harrison</div><div class="text-2xs text-theme-muted">Diane.Harrison@mosaicfsi.com</div></td>
+              <td class="px-6 py-3.5 font-medium">21.0 GB <span class="text-theme-muted text-2xs">/ 99.0 GB</span></td>
+              <td class="px-6 py-3.5"><span class="font-bold">21.2%</span></td>
+              <td class="px-6 py-3.5">No</td>
+              <td class="px-6 py-3.5"><span class="text-theme-muted">Healthy</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Phil Doak</div><div class="text-2xs text-theme-muted">phil.doak@mosaicfsi.com</div></td>
+              <td class="px-6 py-3.5 font-medium">20.09 GB <span class="text-theme-muted text-2xs">/ 99.0 GB</span></td>
+              <td class="px-6 py-3.5"><span class="font-bold">20.3%</span></td>
+              <td class="px-6 py-3.5">No</td>
+              <td class="px-6 py-3.5"><span class="text-theme-muted">Healthy</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Joe Whitfield</div><div class="text-2xs text-theme-muted">joe.whitfield@mosaicfsi.com</div></td>
+              <td class="px-6 py-3.5 font-medium">19.08 GB <span class="text-theme-muted text-2xs">/ 99.0 GB</span></td>
+              <td class="px-6 py-3.5"><span class="font-bold">19.3%</span></td>
+              <td class="px-6 py-3.5">No</td>
+              <td class="px-6 py-3.5"><span class="text-theme-muted">Healthy</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Myles Allan</div><div class="text-2xs text-theme-muted">myles.allan@mosaicfsi.com</div></td>
+              <td class="px-6 py-3.5 font-medium">11.57 GB <span class="text-theme-muted text-2xs">/ 99.0 GB</span></td>
+              <td class="px-6 py-3.5"><span class="font-bold">11.7%</span></td>
+              <td class="px-6 py-3.5">Yes</td>
+              <td class="px-6 py-3.5"><span class="text-theme-muted">Healthy</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Mathieu Hemery</div><div class="text-2xs text-theme-muted">Mathieu.Hemery@mosaicfsi.com</div></td>
+              <td class="px-6 py-3.5 font-medium">10.88 GB <span class="text-theme-muted text-2xs">/ 99.0 GB</span></td>
+              <td class="px-6 py-3.5"><span class="font-bold">11.0%</span></td>
+              <td class="px-6 py-3.5">No</td>
+              <td class="px-6 py-3.5"><span class="text-theme-muted">Healthy</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Celine Nguyen</div><div class="text-2xs text-theme-muted">Celine.Nguyen@mosaicfsi.com</div></td>
+              <td class="px-6 py-3.5 font-medium">10.84 GB <span class="text-theme-muted text-2xs">/ 99.0 GB</span></td>
+              <td class="px-6 py-3.5"><span class="font-bold">10.9%</span></td>
+              <td class="px-6 py-3.5">No</td>
+              <td class="px-6 py-3.5"><span class="text-theme-muted">Healthy</span></td>
+            </tr>          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SharePoint Breakdown -->
+    <div class="bg-theme-card border border-theme rounded-2xl overflow-hidden shadow-sm">
+      <div class="px-6 py-4 border-b border-theme bg-theme-th flex justify-between items-center">
+        <h2 class="text-base font-bold text-theme-main">SharePoint Sites Storage & Cold Tier Opportunities</h2>
+        <span class="text-xs px-2.5 py-1 rounded bg-theme-kpi text-theme-main font-semibold">Total: 55 Sites</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-theme-th text-theme-muted uppercase font-semibold border-b border-theme">
+            <tr>
+              <th class="px-6 py-3.5">Site Collection</th>
+              <th class="px-6 py-3.5">Storage Used</th>
+              <th class="px-6 py-3.5">Total Files</th>
+              <th class="px-6 py-3.5">Stagnant %</th>
+              <th class="px-6 py-3.5">Tiering Target</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y border-subtle">
+            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Sharepoint - Customers Owners</div></td>
+              <td class="px-6 py-3.5 font-bold">139.49 GB</td>
+              <td class="px-6 py-3.5">32,300</td>
+              <td class="px-6 py-3.5">98.1%</td>
+              <td class="px-6 py-3.5"><span class="text-emerald-500 font-bold">M365 Cold Archive Candidate</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Sharepoint - Corporate Owners</div></td>
+              <td class="px-6 py-3.5 font-bold">110.77 GB</td>
+              <td class="px-6 py-3.5">4,563</td>
+              <td class="px-6 py-3.5">97.0%</td>
+              <td class="px-6 py-3.5"><span class="text-emerald-500 font-bold">M365 Cold Archive Candidate</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Sharepoint - Collateral Owners</div></td>
+              <td class="px-6 py-3.5 font-bold">92.28 GB</td>
+              <td class="px-6 py-3.5">11,948</td>
+              <td class="px-6 py-3.5">96.1%</td>
+              <td class="px-6 py-3.5"><span class="text-emerald-500 font-bold">M365 Cold Archive Candidate</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Mosaic Tech Admin</div></td>
+              <td class="px-6 py-3.5 font-bold">31.25 GB</td>
+              <td class="px-6 py-3.5">1,501</td>
+              <td class="px-6 py-3.5">95.5%</td>
+              <td class="px-6 py-3.5"><span class="text-theme-muted">Active Tier</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Sharepoint - HR Owners</div></td>
+              <td class="px-6 py-3.5 font-bold">19.47 GB</td>
+              <td class="px-6 py-3.5">10,524</td>
+              <td class="px-6 py-3.5">98.3%</td>
+              <td class="px-6 py-3.5"><span class="text-theme-muted">Active Tier</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Sharepoint - Privacy Owners</div></td>
+              <td class="px-6 py-3.5 font-bold">15.17 GB</td>
+              <td class="px-6 py-3.5">3,802</td>
+              <td class="px-6 py-3.5">99.0%</td>
+              <td class="px-6 py-3.5"><span class="text-theme-muted">Active Tier</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Sharepoint - Board Owners</div></td>
+              <td class="px-6 py-3.5 font-bold">6.19 GB</td>
+              <td class="px-6 py-3.5">679</td>
+              <td class="px-6 py-3.5">95.4%</td>
+              <td class="px-6 py-3.5"><span class="text-theme-muted">Active Tier</span></td>
+            </tr>            <tr class="hover-theme-row">
+              <td class="px-6 py-3.5"><div class="font-bold text-theme-main">Sharepoint - People Owners</div></td>
+              <td class="px-6 py-3.5 font-bold">5.97 GB</td>
+              <td class="px-6 py-3.5">6,905</td>
+              <td class="px-6 py-3.5">97.5%</td>
+              <td class="px-6 py-3.5"><span class="text-theme-muted">Active Tier</span></td>
+            </tr>          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-theme py-6 text-center text-xs text-theme-muted">
+    Circle Connect M365 Automation Engine &bull; 2026-10-30
+  </footer>
+  <script>
+    function applySavedTheme() {
+      const savedTheme = localStorage.getItem('circle_theme') || 'circleit';
+      const savedMode = localStorage.getItem('circle_mode') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.documentElement.setAttribute('data-mode', savedMode);
+      const sel = document.getElementById('themeSelector');
+      if (sel) sel.value = savedTheme;
+      updateModeButton(savedMode);
+    }
+    function changeTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('circle_theme', theme);
+    }
+    function toggleMode() {
+      const current = document.documentElement.getAttribute('data-mode') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-mode', next);
+      localStorage.setItem('circle_mode', next);
+      updateModeButton(next);
+    }
+    function updateModeButton(mode) {
+      const icon = document.getElementById('modeIcon');
+      const label = document.getElementById('modeLabel');
+      if (mode === 'dark') {
+        if (icon) icon.className = 'fa-solid fa-sun text-amber-400';
+        if (label) label.textContent = 'Light';
+      } else {
+        if (icon) icon.className = 'fa-solid fa-moon text-indigo-500';
+        if (label) label.textContent = 'Dark';
+      }
+    }
+    document.addEventListener('DOMContentLoaded', applySavedTheme);
+    applySavedTheme();
+</script>
+</body>
+</html>

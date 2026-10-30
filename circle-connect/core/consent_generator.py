@@ -30,3 +30,4 @@ if __name__ == "__main__":
     print(f"\nSend this link to the client admin, or open it while signed in to their tenant:\n")
     print(url)
     print("\nOnce accepted, Circle IT has permission to run audits on their tenant!")
+
